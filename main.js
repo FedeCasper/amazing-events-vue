@@ -1,5 +1,7 @@
 const {createApp} = Vue
 
+console.log(Vue);
+
 const app = createApp({
 
      data(){

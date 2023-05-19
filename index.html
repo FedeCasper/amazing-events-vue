@@ -87,7 +87,7 @@
                </div>
                <div id="contenedorCheckboxs" class="d-flex p-3 rounded-top">
 
-                    <label v-for="category of categoryArrayNoRepeat" class="me-2">
+                    <label v-for="category of categoryArrayNoRepeat" class="me-2 text-white">
                          <input class="me-3" type="checkbox" name="" id="" v-model="selectedCategories" :value="category" @change="filterByCheckbox">{{category}}
                     </label>
 
