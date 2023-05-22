@@ -9,7 +9,8 @@ const app = createApp({
                eventsArray: [],
                categoryArrayNoRepeat: [],
                selectedCategories: [],
-               checkboxFiltredArray: []
+               checkboxFiltredArray: [],
+               printableArray: []
           }
      },
 
@@ -21,6 +22,7 @@ const app = createApp({
                console.log(this.eventsArray);
                this.categoryArrayNoRepeat = [...new Set(this.eventsArray.map(elemento => elemento.category))]
                console.log(this.categoryArrayNoRepeat);
+               this.printableArray = this.eventsArray
           })
           .catch(error => console.error(error))
      },
@@ -29,6 +31,12 @@ const app = createApp({
           filterByCheckbox(){
                this.checkboxFiltredArray = this.eventsArray.filter( e => this.selectedCategories.includes(e.category))
                console.log(this.checkboxFiltredArray);
+               if(this.checkboxFiltredArray.length != 0){
+                    this.printableArray = this.checkboxFiltredArray
+               }else{
+                    this.printableArray = this.eventsArray
+               }
+               
           }
      }
 

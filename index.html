@@ -14,14 +14,14 @@
 
 <body class="d-flex flex-column align-items-center">
 
-     <div id="app">
+     <div id="app" class="w-100 d-flex flex-column align-items-center">
 
-          <header class="d-flex flex-column align-items-center">
+          <header class="d-flex flex-column align-items-center w-100">
                <img class="m-3" id="headerLogo" src="./assets/Logo-Amazing-Events.png" alt="">
                <h1 class="p-1">"Welcome to the amazing world of your nearest events"</h1>
           </header>
      
-          <!-- NAVBAR section -->
+     <!-- NAVBAR section -->
           <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top w-100 shadow">
                <div class="container-fluid">
                     <img id="navLogo" src="./assets/logo.png" alt="">
@@ -85,6 +85,7 @@
      
                     </div>
                </div>
+     <!-- CHECKBOX section -->
                <div id="contenedorCheckboxs" class="d-flex p-3 rounded-top">
 
                     <label v-for="category of categoryArrayNoRepeat" class="me-2 text-white">
@@ -96,9 +97,10 @@
 
                <div v-if="checkboxFiltredArray.length != 0" class="bg-warning d-flex justify-content-center">{{checkboxFiltredArray.length}} events has been found!</div>
 
-               <div id="contenedorCards" class="d-flex flex-wrap justify-content-center py-4 rounded-bottom">
+     <!-- CARDS CONTAINER section -->
+               <div id="contenedorCards" class="d-flex flex-wrap justify-content-center py-4 rounded-bottom gap-3">
                     
-                    <div v-for="event of checkboxFiltredArray" class="card shadow card-container mainCards" style="width: 18rem;">
+                    <div v-for="event of printableArray" class="card shadow card-container mainCards" style="width: 18rem;">
                          <button class="star" style="height: 32px; width:32px;"></button>
                          <img :src="event.image" class="card-img-top image-card" alt="..." style="height: 12rem; object-fit:cover;">
                          <div class="card-body d-flex flex-column justify-content-between flex-wrap normal-card">
