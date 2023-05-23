@@ -16,6 +16,8 @@
 
      <div id="app" class="w-100 d-flex flex-column align-items-center">
 
+{{crossFilter}}
+
           <header class="d-flex flex-column align-items-center w-100">
                <img class="m-3" id="headerLogo" src="./assets/Logo-Amazing-Events.png" alt="">
                <h1 class="p-1">"Welcome to the amazing world of your nearest events"</h1>
@@ -66,10 +68,8 @@
                               </li>
                          </ul>
                          <form class="d-flex" role="search">
-                              <div id="contadorCards" class="ms-2 d-flex align-items-center w-100"></div>
-                              <input id="inputText" class="form-control me-2 " type="text"
-                                   placeholder="Type the name of the event" aria-label="Search">
-                              <button id="botonBuscar" class="btn btn-search" type="button">Search</button>
+                              <input id="inputText" class="form-control me-2 " type="text" placeholder="Type the event's name" aria-label="Search" v-model="inputTextValue">
+                              <button id="botonBuscar" class="btn btn-search" type="button" v-on:click="filterByInputText">Search</button>
                          </form>
                     </div>
                </div>
@@ -85,8 +85,9 @@
      
                     </div>
                </div>
+
      <!-- CHECKBOX section -->
-               <div id="contenedorCheckboxs" class="d-flex p-3 rounded-top">
+               <div id="contenedorCheckboxs" class="d-flex justify-content-around p-3 rounded-top">
 
                     <label v-for="category of categoryArrayNoRepeat" class="me-2 text-white">
                          <input class="me-3" type="checkbox" name="" id="" v-model="selectedCategories" :value="category" @change="filterByCheckbox">{{category}}
