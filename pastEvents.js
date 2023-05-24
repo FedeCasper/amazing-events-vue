@@ -1,24 +1,67 @@
-import { imprimirNumeroCards, renderizarCards, renderizaChechboxs, filtraPorInputText, filtraPorCheckbox, filtraCruzado, changeStar } from "./module/functions.js";
 
-const url = "https://mindhub-xj03.onrender.com/api/amazing"
-let contenedorCards = document.getElementById('contenedorCards');
-let contadorCards = document.getElementById('contadorCards')
+const {createApp} = Vue
 
-fetch(url)
-.then(response => response.json())
-.then(data => {
-     let arrayEventos = data.events
-     let eventsFilterByDate = arrayEventos.filter( element => element.date < data.currentDate)
-     console.log(eventsFilterByDate);
-     renderizarCards(eventsFilterByDate, contenedorCards)
-     let contenedorCheckboxs = document.getElementById('contenedorCheckboxs');
-     renderizaChechboxs(arrayEventos, contenedorCheckboxs )
-     let botonBuscar = document.getElementById('botonBuscar')
-     let inputText = document.getElementById('inputText')
-     let checkboxs = document.querySelectorAll('input[type="checkbox"]')
-     let star = document.querySelectorAll('.star')
-     botonBuscar.addEventListener('click', () => filtraCruzado(checkboxs, eventsFilterByDate, inputText))
-     checkboxs.forEach(checkbox => checkbox.addEventListener('change', () => filtraCruzado(checkboxs, eventsFilterByDate, inputText)))
-     star.forEach( element => element.addEventListener( 'click', (e) => changeStar(e, element) ) )
+const app = createApp({
+
+     data(){
+          return{
+               eventsArray: [],
+               categoryArrayNoRepeat: [],
+               selectedCategories: [],
+               checkboxFiltredArray: [],
+               printableArray: [],
+               inputTextValue: "",
+               inputTextFilteredArray: []
+          }
+     },
+
+     created(){
+          fetch("https://mindhub-xj03.onrender.com/api/amazing")
+          .then(response => response.json())
+          .then(data => {
+               // console.log(this.eventsArray);
+               this.eventsArray = data.events.filter( element => element.date < data.currentDate)
+               console.log(this.eventsArray);
+               this.categoryArrayNoRepeat = [...new Set(this.eventsArray.map(elemento => elemento.category))]
+               // console.log(this.categoryArrayNoRepeat);
+               this.printableArray = this.eventsArray
+               console.log(this.printableArray);
+          })
+          .catch(error => console.error(error))
+     },
+
+     methods:{
+          // filterByCheckbox(){
+          //      this.checkboxFiltredArray = this.eventsArray.filter( e => this.selectedCategories.includes(e.category))
+          //      console.log(this.checkboxFiltredArray);
+          //      if(this.checkboxFiltredArray.length != 0){
+          //           this.printableArray = this.checkboxFiltredArray
+          //      }else{
+          //           this.printableArray = this.eventsArray
+          //      }
+               
+          // },
+          // filterByInputText(){
+          //      this.inputTextFilteredArray = this.eventsArray.filter( event => event.name.toLowerCase().includes(this.inputTextValue.toLowerCase()))
+          //      console.log(this.inputTextFilteredArray);
+          //      if(this.inputTextFilteredArray.length != 0){
+          //           this.printableArray = this.inputTextFilteredArray
+          //      }else{
+          //           this.printableArray = this.eventsArray
+          //      }
+          // }
+     },
+
+     computed:{
+          crossFilter(){
+               this.inputTextFilteredArray = this.eventsArray.filter( event => event.name.toLowerCase().includes(this.inputTextValue.toLowerCase()))
+               this.checkboxFiltredArray = this.inputTextFilteredArray.filter( e => this.selectedCategories.includes(e.category))
+               this.checkboxFiltredArray.length == 0 ? this.printableArray = this.inputTextFilteredArray : this.printableArray = this.checkboxFiltredArray
+          }
+     }
+
 })
-.catch(error => console.error(error))
+
+app.mount('#app')
+
+
