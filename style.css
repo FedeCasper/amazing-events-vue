@@ -16,8 +16,8 @@ body {
      background-color: #1A1A1A;
 }
 header {
-     background: rgb(65,184,131);
-     background: linear-gradient(83deg, rgba(65,184,131,1) 0%, rgba(83,155,193,1) 63%, rgba(100,126,254,1) 100%);}
+     border-bottom: 5px solid rgba(65,184,131,1);
+}
 
 #navLogo {
      height: 2rem;
@@ -28,7 +28,7 @@ header {
 }
 
 .accent {
-     color: var(--color-primary);
+     color: #26ac70;
      font-weight: bolder;
 }
 
@@ -49,8 +49,8 @@ h1 {
 }
 
 .btn-search{
-     color: #42D392;
-     border: 2px solid #42D392;
+     color: #26ac70;
+     border: 2px solid #26ac70;
 }
 
 .top3{
@@ -102,20 +102,20 @@ h1 {
 }
 
 .image-card{
-     border-bottom: 2px solid blueviolet;
+     border-bottom: 2px solid rgba(65,184,131,1);
 }
 
 .category {
-     color: blueviolet;
+     color:  rgba(100,126,254,1);
 }
 
 .date {
-     color: #D90368;
+     color: rgba(100,126,254,1);
 }
 
 .btn-primary {
      border: none;
-     background-color: blueviolet !important;
+     background-color:  rgba(65,184,131,1) !important;
      transition: all 0.2s ease-in-out;
 }
 
@@ -129,9 +129,10 @@ h1 {
 }
 
 .normal-card{
-     background: rgb(255,255,255);
-     background: linear-gradient(165deg, rgba(255,255,255,1) 0%, rgba(251,245,255,1) 53%, rgba(229,193,255,1) 83%, rgba(193,110,254,1) 95%, rgba(165,45,253,1) 100%);
+     background: rgb(222, 222, 222);
+     background: linear-gradient(320deg, rgba(65,184,131,1) 0%, rgba(65, 184, 131, 0.179) 13%, rgba(73, 73, 73, 0.091) 100%);
 }
+
 
 .related-card{
      background: rgb(131,131,131);

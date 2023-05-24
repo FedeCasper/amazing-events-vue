@@ -54,10 +54,7 @@ const app = createApp({
           crossFilter(){
                this.inputTextFilteredArray = this.eventsArray.filter( event => event.name.toLowerCase().includes(this.inputTextValue.toLowerCase()))
                this.checkboxFiltredArray = this.inputTextFilteredArray.filter( e => this.selectedCategories.includes(e.category))
-               console.log(this.checkboxFiltredArray);
-               
-               console.log(this.inputTextFilteredArray);
-               this.checkboxFiltredArray.length == 0 ?
+               this.checkboxFiltredArray.length == 0 ? this.printableArray = this.inputTextFilteredArray : this.printableArray = this.checkboxFiltredArray
           }
      }
 
