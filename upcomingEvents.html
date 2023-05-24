@@ -12,82 +12,132 @@
      <title>Amazing Events</title>
 </head>
 
-<body class="d-flex flex-column align-items-center bg-body-tertiary">
+<body class="d-flex flex-column align-items-center">
 
-     <header class="d-flex flex-column align-items-center">
-          <img class="m-3" id="headerLogo" src="./assets/Logo-Amazing-Events.png" alt="">
-          <h1 class="p-1">"Welcome to the amazing world of your nearest events"</h1>
-     </header>
+     <div id="app" class="w-100 d-flex flex-column align-items-center">
 
-     <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top w-100 shadow">
-          <div class="container-fluid">
-               <img id="navLogo" src="./assets/logo.png" alt="">
-               <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-               </button>
-               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                         <li class="nav-item">
-                              <a class="nav-link" aria-current="page" href="./index.html">Home</a>
-                         </li>
-                         <li class="nav-item">
-                              <a class="nav-link" href="./pastEvents.html">Past Events</a>
-                         </li>
-                         <li class="nav-item">
-                              <a class="nav-link accent" href="#l">Upcoming Events</a>
-                         </li>
-                         <li class="nav-item">
-                              <a class="nav-link" href="./contact.html">Contact</a>
-                         </li>
-                         <li class="nav-item">
-                              <a class="nav-link" href="./stats.html">Stats</a>
-                         </li>
-                         <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
-                                   Dropdown
-                              </a>
-                              <ul class="dropdown-menu">
-                                   <li><a class="dropdown-item" href="#">Action</a></li>
-                                   <li><a class="dropdown-item" href="#">Another action</a></li>
-                                   <li>
-                                        <hr class="dropdown-divider">
-                                   </li>
-                                   <li><a class="dropdown-item" href="#">Something else here</a></li>
-                              </ul>
-                         </li>
-                         <li class="nav-item">
-                              <a class="nav-link disabled">Disabled</a>
-                         </li>
-                    </ul>
-                    <form class="d-flex" role="search">
-                         <div id="contadorCards" class="ms-2 d-flex align-items-center w-100"></div>
-                         <input id="inputText" class="form-control me-2 " type="text" placeholder="Type the name of the event" aria-label="Search">
-                         <button id="botonBuscar" class="btn btn-search" type="button">Search</button>
-                    </form>
+{{crossFilter}}
+
+          <header class="d-flex flex-column align-items-center w-100 text-light">
+               <img class="m-3" id="headerLogo" src="./assets/Logo-Amazing-Events.png" alt="">
+               <h1 class="p-1">"Welcome to the amazing world of your nearest events"</h1>
+          </header>
+     
+     <!-- NAVBAR section -->
+          <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top w-100 shadow">
+               <div class="container-fluid">
+                    <img id="navLogo" src="./assets/logo.png" alt="">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                         aria-expanded="false" aria-label="Toggle navigation">
+                         <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                              <li class="nav-item">
+                                   <a class="nav-link" aria-current="page" href="./index.html">Home</a>
+                              </li>
+                              <li class="nav-item">
+                                   <a class="nav-link" href="./pastEvents.js">Past Events</a>
+                              </li>
+                              <li class="nav-item">
+                                   <a class="nav-link accent" href="#">Upcoming Events</a>
+                              </li>
+                              <li class="nav-item">
+                                   <a class="nav-link" href="./contact.html">Contact</a>
+                              </li>
+                              <li class="nav-item">
+                                   <a class="nav-link" href="./stats.html">Stats</a>
+                              </li>
+                              <li class="nav-item dropdown">
+                                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        Dropdown
+                                   </a>
+                                   <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                        <li>
+                                             <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                   </ul>
+                              </li>
+                              <li class="nav-item">
+                                   <a class="nav-link disabled">Disabled</a>
+                              </li>
+                         </ul>
+                         <form class="d-flex" role="search">
+                              <input id="inputText" class="form-control me-2 " type="text" placeholder="Type the event's name" aria-label="Search" v-model="inputTextValue">
+                              <button id="botonBuscar" class="btn btn-search" type="button" v-on:click="filterByInputText">Search</button>
+                         </form>
+                    </div>
                </div>
-          </div>
-     </nav>
+          </nav>
+     
+          <main>
+     
+               <div class="d-flex p-3 rounded-top flex-wrap">
+                    <div class="list-group top3">
+     
+                    </div>
+                    <div class="list-group top6">
+     
+                    </div>
+               </div>
 
-     <main>
-          <div id="contenedorCheckboxs" class="d-flex p-3 rounded-top">
-               <!-- Acá se imprimen los checkbox -->
-          </div>
-          <div id="contenedorCards" class="d-flex justify-content-center py-4 rounded-bottom">
-               <!-- Acá se imprimen las cards -->
-          </div>
-     </main>
+     <!-- CHECKBOX section -->
+               <div id="contenedorCheckboxs" class="d-flex justify-content-around p-3 rounded-top">
 
-     <footer class="d-flex justify-content-center align-items-center">
-          <p>Desarrollado por Federico Rouyere</p>
-     </footer>
+                    <label v-for="category of categoryArrayNoRepeat" class="me-2 text-white">
+                         <input class="me-3" type="checkbox" name="" id="" v-model="selectedCategories" :value="category" @change="filterByCheckbox">{{category}}
+                    </label>
+
+                    
+               </div>
+
+               <div v-if="checkboxFiltredArray.length != 0" class="bg-warning d-flex justify-content-center">{{checkboxFiltredArray.length}} events has been found!</div>
+
+     <!-- CARDS CONTAINER section -->
+               <div id="contenedorCards" class="d-flex flex-wrap justify-content-center py-4 rounded-bottom gap-3">
+                    
+                    <div v-if="printableArray.length != 0" v-for="event of printableArray" class="card shadow card-container mainCards" style="width: 18rem;">
+                         <button class="star" style="height: 32px; width:32px;"></button>
+                         <img :src="event.image" class="card-img-top image-card" alt="..." style="height: 12rem; object-fit:cover;">
+                         <div class="card-body d-flex flex-column justify-content-between flex-wrap normal-card">
+                              <div class="d-flex flex-column">
+                                   <h5 class="card-title border-bottom pb-2 fw-bold">{{event.name}}</h5>
+                                   <h6 class="card-title category">{{event.category}}</h6>
+                                   <p class="card-text fst-italic">{{event.description}}</p>
+                                   <p class="card-text fw-bold m-0"></p>
+                                   <p class="card-text fw-bold m-0"><span class="fw-normal"></span></p>
+                                   <h6 class="card-text date mt-2"><img class="h-75 me-2" src="./assets/date.png"  alt="...">{{event.date}}</h6>
+                              </div>
+                              <div class="d-flex mt-3">
+                                   <a id="btn-goSomewhere" href="#" class="btn btn-primary">Go somewhere</a>
+                              </div>
+                         </div>
+                    </div>
+                    <div v-else class="d-flex flex-column align-items-center p-5 text-light gap-5">
+                         <h3>Ops!!! no event found...</h3>
+                         <img class="w-25" src="./assets/not-found.png" alt="Not found image">
+                         <h4>Please try again</h4>
+                    </div>
+
+               </div>
+          </main>
+     
+          <footer class="d-flex justify-content-center align-items-center">
+               <p>Desarrollado por Federico Rouyere</p>
+          </footer>
+
+     </div>
 
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
           crossorigin="anonymous"></script>
-     <script type="module" src="./upcomingEvents.js"></script>
+     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+     <script src="./upcomingEvents.js"></script>
 </body>
 
 </html>
