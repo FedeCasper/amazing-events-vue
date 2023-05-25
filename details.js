@@ -1,13 +1,3 @@
-// const $cardDetails = document.getElementById('cardDetails')
-// console.log($cardDetails);
-// const $relatedDiv = document.querySelector('.related')
-
-// imprimirCardDetails(eventoObjeto, $cardDetails)
-// let arrayFiltered = filterByRelated(arrayOriginal, eventoObjeto)
-// let arrayOneEventPerCategory = selectOneEventPerCategory(arrayOriginal, eventoObjeto)
-// printRelated(arrayFiltered, $relatedDiv, arrayOneEventPerCategory)
-
-
 const { createApp } = Vue
 
 createApp({
@@ -15,7 +5,8 @@ createApp({
           return {
                arrayOriginal:[],
                eventoObjeto: {},
-               id: ""
+               id: "",
+               relatedArray: []
           }
      },
      created() {
@@ -24,13 +15,15 @@ createApp({
                .then(response => response.json())
                .then(data => {
                     const params = new URLSearchParams(location.search);
-                    console.log(params);
+                    // console.log(params);
                     this.id = params.get('id');
-                    console.log("id:", this.id);
+                    // console.log("id:", this.id);
                     this.arrayOriginal = data.events
-                    console.log(this.arrayOriginal);
+                    // console.log(this.arrayOriginal);
                     this.eventoObjeto = this.arrayOriginal.find(element => element._id == this.id);
-                    console.log(this.eventoObjeto);
+                    // console.log(this.eventoObjeto);
+                    this.relatedArray = (this.arrayOriginal.filter( element => element.category == this.eventoObjeto.category && element._id != this.eventoObjeto._id )).splice(0,5)
+                    // console.log(this.relatedArray);
                })
 
      },

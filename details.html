@@ -100,7 +100,17 @@
      
                <div class="d-flex flex-column w-100 mt-4 p-3 related">
                     <h2 class="text-center mb-3">Related Events</h2>
-                    <!-- Here goes related events cards -->
+                    <div class="d-flex gap-3">
+                         <div  v-for="event of relatedArray" class="card card-container" style="width: 18rem;">
+                              <img :src="event.image" class="card-img-top" :alt="event.name" style="height: 10rem; object-fit: cover">
+                              <div class="card-body related-card">
+                                   <h6 class="card-title border-bottom pb-2 fw-bold">{{event.name}}</h6>
+                                   <h6 class="card-title category">{{event.category}}</h6>
+                                   <p class="card-text fw-bold m-0">Place: <span class="fw-normal">{{event.place}}</span></p>
+                                   <h6 class="card-text date mt-2">{{new Date().toDateString(event.date)}}</h6>
+                              </div>
+                         </div>
+                    </div>
                </div>
           </main>
      
