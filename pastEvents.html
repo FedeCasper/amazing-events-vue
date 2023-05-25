@@ -119,9 +119,9 @@
                          </div>
                     </div>
                     <div v-else class="d-flex flex-column align-items-center p-5 text-light gap-5">
-                         <h3>Ops!!! no event found...</h3>
-                         <img class="w-25" src="./assets/not-found.png" alt="Not found image">
-                         <h4>Please try again</h4>
+                         <h3  v-cloak>{{notFoundObject.message1}}<span v-cloak class="accent">{{notFoundObject.search}}</span></h3>
+                         <img  v-cloak class="w-25" :src="notFoundObject.image" alt="Not found image">
+                         <h4  v-cloak>{{notFoundObject.message2}}</h4>
                     </div>
 
                </div>

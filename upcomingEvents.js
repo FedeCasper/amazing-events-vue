@@ -29,26 +29,17 @@ const app = createApp({
           .catch(error => console.error(error))
      },
 
+     beforeUpdate(){
+          this.notFoundObject = {
+               message1: "Ops!!! we couldn't found a ",
+               search: this.inputTextValue,
+               image: "./assets/not-found.png",
+               message2: "Please try again", 
+          }
+     },
+
      methods:{
-          // filterByCheckbox(){
-          //      this.checkboxFiltredArray = this.eventsArray.filter( e => this.selectedCategories.includes(e.category))
-          //      console.log(this.checkboxFiltredArray);
-          //      if(this.checkboxFiltredArray.length != 0){
-          //           this.printableArray = this.checkboxFiltredArray
-          //      }else{
-          //           this.printableArray = this.eventsArray
-          //      }
-               
-          // },
-          // filterByInputText(){
-          //      this.inputTextFilteredArray = this.eventsArray.filter( event => event.name.toLowerCase().includes(this.inputTextValue.toLowerCase()))
-          //      console.log(this.inputTextFilteredArray);
-          //      if(this.inputTextFilteredArray.length != 0){
-          //           this.printableArray = this.inputTextFilteredArray
-          //      }else{
-          //           this.printableArray = this.eventsArray
-          //      }
-          // }
+
      },
 
      computed:{
