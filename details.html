@@ -79,19 +79,20 @@
                     <div class="card mb-3" style="max-width: 940px;">
                          <div class="row g-0">
                               <div class="col-md-4">
-                                   <img :src="eventoObjeto.image" class="rounded-start" :alt="eventoObjeto.name"  style="max-width: 100%; height: 100%; object-fit:cover;">
+                                   <img id="detailCardImage" :src="eventoObjeto.image" class="rounded-start" :alt="eventoObjeto.name" :title="eventoObjeto.name">
                               </div>
                               <div class="col-md-8">
                                    <div class="card-body normal-card">
                                         <h3 id="cardTitleH3" class="card-title">{{eventoObjeto.name}}</h3>
                                         <p class="card-text category">{{eventoObjeto.category}}</p>
                                         <p class="card-text fst-italic">{{eventoObjeto.description}}</p>
-                                        <h6 class="card-text">Place: {{eventoObjeto.place}}</p>
-                                        <h6 class="card-text">Date: {{eventoObjeto.date}}</p>
-                                        <h6 class="card-text">Capacity: {{eventoObjeto.capacity}}</p>
-                                        <h6 class="card-text">Price: $ {{eventoObjeto.price}}</h6>
-                                        <h6 class="card-text"></h6>
-                                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                                        <p class="card-text">Place: {{eventoObjeto.place}}</p>
+                                        <p class="card-text">Date: {{eventoObjeto.date}}</p>
+                                        <p class="card-text">Capacity: {{eventoObjeto.capacity}}</p>
+                                        <p class="card-text">Price: $USD {{eventoObjeto.price}}.00</p>
+                                        <p class="card-text" v-if="eventoObjeto.assistance">Assistance: {{eventoObjeto.assistance}} pers.</p>
+                                        <p class="card-text" v-else>Estimate {{eventoObjeto.estimate}}</p>
+                                        <p class="card-text"><small class="text-body-secondary">Last updated {{randomNumber}} mins ago</small></p>
                                    </div>
                               </div>
                          </div>

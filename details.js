@@ -6,7 +6,8 @@ createApp({
                arrayOriginal:[],
                eventoObjeto: {},
                id: "",
-               relatedArray: []
+               relatedArray: [],
+               randomNumber: 0
           }
      },
      created() {
@@ -19,15 +20,19 @@ createApp({
                     this.id = params.get('id');
                     // console.log("id:", this.id);
                     this.arrayOriginal = data.events
-                    // console.log(this.arrayOriginal);
+                    console.log(this.arrayOriginal);
                     this.eventoObjeto = this.arrayOriginal.find(element => element._id == this.id);
                     // console.log(this.eventoObjeto);
                     this.relatedArray = (this.arrayOriginal.filter( element => element.category == this.eventoObjeto.category && element._id != this.eventoObjeto._id )).splice(0,5)
                     // console.log(this.relatedArray);
+                    this.generateRandomNumber()
                })
 
      },
      methods: {
+          generateRandomNumber(){
+               this.randomNumber = Math.floor(Math.random() * 60)
+          }
 
      },
      computed: {
