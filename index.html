@@ -86,6 +86,8 @@
                     </div>
                </div>
 
+               <my-component></my-component>
+
      <!-- CHECKBOX section -->
                <div id="contenedorCheckboxs" class="d-flex justify-content-around p-3 rounded-top">
                     <label v-for="category of categoryArrayNoRepeat" class="me-2 text-white">
@@ -116,16 +118,11 @@
                               </div>
                          </div>
                     </div>
-                    <div v-cloak v-if="printableArray.length == 0 && loader == false" class="d-flex flex-column align-items-center p-5 text-light gap-5">
-                              <h3>Ops!!! we couldn't found a <span class="accent">"{{inputTextValue}}"</span> event ...</h3>
-                              <img class="w-25" src="./assets/not-found.png" alt="Not found image">
-                              <h4>Please try again</h4>
+                    <div v-else class="d-flex flex-column align-items-center p-5 text-light gap-5">
+                         <h3  v-cloak>{{notFoundObject.message1}}<span v-cloak class="accent">{{notFoundObject.search}}</span></h3>
+                         <img  v-cloak class="w-25" :src="notFoundObject.image" alt="Not found image">
+                         <h4  v-cloak>{{notFoundObject.message2}}</h4>
                     </div>
-<!-- 
-                    <div v-else-if="printableArray.length == 0 && loader == true" class="spinner-border text-success" role="status">
-                         <span class="visually-hidden">Loading...</span>
-                    </div> -->
-
 
                </div>
           </main>
