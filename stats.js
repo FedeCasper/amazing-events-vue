@@ -54,6 +54,7 @@ createApp({
                     // console.log("PAST EVENTS" , this.arrayPastEvents);
                     this.eventPercentajeCalculator()
                     this.largerCapacityCalculator()
+                    this.function()
                })
      },
      methods:{
@@ -72,6 +73,14 @@ createApp({
                let eventsSortedByCapacity = Array.from(this.arrayEvents).sort((a,b) => b.capacity - a.capacity)
                this.eventWithLargerCapacity = eventsSortedByCapacity.shift()
                return this.eventWithLargerCapacity
+          },
+          function(){
+               let x = [...new Set(this.arrayEvents.map(event => event.category))]
+               console.log(x);
+               let y = x.map(category => this.arrayEvents.filter(event => event.category == category))
+               console.log(y);
+               // let z = y.map(array => array.reduce((acc, actual) => acc += actual.capacity * actual.price)  )
+               // console.log(z);
           }
      },
      computed:{
