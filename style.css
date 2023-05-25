@@ -12,6 +12,10 @@
      color: rgb(70, 70, 70);
 }
 
+[v-cloak] {
+     display: none;
+}
+
 body {
      background-color: #1A1A1A;
 }

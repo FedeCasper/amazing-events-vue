@@ -16,7 +16,7 @@
 
      <div id="app" class="w-100 d-flex flex-column align-items-center">
 
-{{crossFilter}}
+          <span>{{crossFilter}}</span>
 
           <header class="d-flex flex-column align-items-center w-100 text-light">
                <img class="m-3" id="headerLogo" src="./assets/Logo-Amazing-Events.png" alt="">
@@ -99,7 +99,7 @@
      <!-- CARDS CONTAINER section -->
                <div id="contenedorCards" class="d-flex flex-wrap justify-content-center py-4 rounded-bottom gap-3">
                     
-                    <div v-if="printableArray.length != 0" v-for="event of printableArray" class="card shadow card-container mainCards">
+                    <div v-cloak v-if="printableArray.length != 0" v-for="event of printableArray" class="card shadow card-container mainCards">
                          <button type="button" class="star" title="Add as favourite"></button>
                          <img :src="event.image" class="card-img-top image-card" :alt="event.name" :title="event.name">
                          <div class="card-body d-flex flex-column justify-content-between flex-wrap normal-card">
@@ -116,11 +116,16 @@
                               </div>
                          </div>
                     </div>
-                    <div v-else class="d-flex flex-column align-items-center p-5 text-light gap-5">
-                         <h3>Ops!!! no event found...</h3>
-                         <img class="w-25" src="./assets/not-found.png" alt="Not found image">
-                         <h4>Please try again</h4>
+                    <div v-cloak v-if="printableArray.length == 0 && loader == false" class="d-flex flex-column align-items-center p-5 text-light gap-5">
+                              <h3>Ops!!! we couldn't found a <span class="accent">"{{inputTextValue}}"</span> event ...</h3>
+                              <img class="w-25" src="./assets/not-found.png" alt="Not found image">
+                              <h4>Please try again</h4>
                     </div>
+<!-- 
+                    <div v-else-if="printableArray.length == 0 && loader == true" class="spinner-border text-success" role="status">
+                         <span class="visually-hidden">Loading...</span>
+                    </div> -->
+
 
                </div>
           </main>

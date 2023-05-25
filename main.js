@@ -10,10 +10,10 @@ const app = createApp({
                checkboxFiltredArray: [],
                printableArray: [],
                inputTextValue: "",
-               inputTextFilteredArray: []
+               inputTextFilteredArray: [],
+               loader: true
           }
      },
-
      created(){
           fetch("https://mindhub-xj03.onrender.com/api/amazing")
           .then(response => response.json())
@@ -24,30 +24,13 @@ const app = createApp({
                // console.log(this.categoryArrayNoRepeat);
                this.printableArray = this.eventsArray
                console.log(this.printableArray);
+               this.loader = false;
           })
           .catch(error => console.error(error))
      },
 
      methods:{
-          // filterByCheckbox(){
-          //      this.checkboxFiltredArray = this.eventsArray.filter( e => this.selectedCategories.includes(e.category))
-          //      console.log(this.checkboxFiltredArray);
-          //      if(this.checkboxFiltredArray.length != 0){
-          //           this.printableArray = this.checkboxFiltredArray
-          //      }else{
-          //           this.printableArray = this.eventsArray
-          //      }
-               
-          // },
-          // filterByInputText(){
-          //      this.inputTextFilteredArray = this.eventsArray.filter( event => event.name.toLowerCase().includes(this.inputTextValue.toLowerCase()))
-          //      console.log(this.inputTextFilteredArray);
-          //      if(this.inputTextFilteredArray.length != 0){
-          //           this.printableArray = this.inputTextFilteredArray
-          //      }else{
-          //           this.printableArray = this.eventsArray
-          //      }
-          // }
+
      },
 
      computed:{
