@@ -76,10 +76,13 @@ h1 {
 }
 
 .mainCards{
+     width: 18rem;
      position: relative;
 }
 
 .star{
+     height: 32px;
+     width:32px;
      background-image: url(./assets/star.png);
      position: absolute;
      bottom: 20px;
@@ -102,6 +105,8 @@ h1 {
 }
 
 .image-card{
+     height: 12rem;
+     object-fit:cover;
      border-bottom: 2px solid rgba(65,184,131,1);
 }
 

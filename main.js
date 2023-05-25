@@ -19,7 +19,7 @@ const app = createApp({
           .then(response => response.json())
           .then(data => {
                this.eventsArray = data.events;
-               // console.log(this.eventsArray);
+               console.log(this.eventsArray);
                this.categoryArrayNoRepeat = [...new Set(this.eventsArray.map(elemento => elemento.category))]
                // console.log(this.categoryArrayNoRepeat);
                this.printableArray = this.eventsArray
