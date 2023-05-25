@@ -31,7 +31,12 @@ const {createApp} = Vue
 createApp({
      data(){
           return{
+               arrayEvents: [],
                currentDate: {},
+               arrayPastEvents: [],
+               eventHighestPercent: {},
+               eventLowestPercent: {},
+               eventWithLargerCapacity: {}
           }
      },
      created(){
@@ -41,16 +46,33 @@ createApp({
                .then(data => {
                     this.currentDate = new Date(data.currentDate)
                     // console.log(this.currentDate);
-                    let arrayEvents = data.events
+                    this.arrayEvents = data.events
                     // console.log(arrayEvents);
-                    let arrayUpcommingEvents =  arrayEvents.filter( element => (new Date(element.date) > this.currentDate))
-                    console.log("UPCOMMING EVENTS" , arrayUpcommingEvents);
-                    let arrayPastEvents =  arrayEvents.filter( element => (new Date(element.date) < this.currentDate))
-                    console.log("PAST EVENTS" , arrayPastEvents);
+                    let arrayUpcommingEvents =  this.arrayEvents.filter( element => (new Date(element.date) > this.currentDate))
+                    // console.log("UPCOMMING EVENTS" , arrayUpcommingEvents);
+                    this.arrayPastEvents = this.arrayEvents.filter( element => (new Date(element.date) < this.currentDate))
+                    // console.log("PAST EVENTS" , this.arrayPastEvents);
+                    this.eventPercentajeCalculator()
+                    this.largerCapacityCalculator()
                })
      },
      methods:{
-
+          eventPercentajeCalculator(){
+               this.eventPercentageArray =  this.arrayPastEvents.map( evento => {
+                    return {
+                         name: evento.name,
+                         eventAssistancePercentage: ((evento.assistance * 100) / evento.capacity).toFixed(2)
+                    };
+               } )
+               this.eventPercentageArray.sort((a,b) => b.eventAssistancePercentage - a.eventAssistancePercentage)
+               this.eventHighestPercent = this.eventPercentageArray.shift();
+               this.eventLowestPercent = this.eventPercentageArray.pop();
+          },
+          largerCapacityCalculator(){
+               let eventsSortedByCapacity = Array.from(this.arrayEvents).sort((a,b) => b.capacity - a.capacity)
+               this.eventWithLargerCapacity = eventsSortedByCapacity.shift()
+               return this.eventWithLargerCapacity
+          }
      },
      computed:{
 
