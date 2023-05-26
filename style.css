@@ -76,6 +76,7 @@ h1 {
 
 .card-container{
      transition: all 0.2s ease-in-out;
+     width: 15rem;
 }
 
 .card-container:hover{
