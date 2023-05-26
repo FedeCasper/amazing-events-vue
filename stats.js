@@ -34,6 +34,7 @@ createApp({
                arrayEvents: [],
                currentDate: {},
                arrayPastEvents: [],
+               arrayUpcommingEvents: [],
                eventHighestPercent: {},
                eventLowestPercent: {},
                eventWithLargerCapacity: {}
@@ -48,13 +49,14 @@ createApp({
                     // console.log(this.currentDate);
                     this.arrayEvents = data.events
                     // console.log(arrayEvents);
-                    let arrayUpcommingEvents =  this.arrayEvents.filter( element => (new Date(element.date) > this.currentDate))
-                    // console.log("UPCOMMING EVENTS" , arrayUpcommingEvents);
                     this.arrayPastEvents = this.arrayEvents.filter( element => (new Date(element.date) < this.currentDate))
                     // console.log("PAST EVENTS" , this.arrayPastEvents);
+                    this.arrayUpcommingEvents =  this.arrayEvents.filter( element => (new Date(element.date) > this.currentDate))
+                    // console.log("UPCOMMING EVENTS" , arrayUpcommingEvents);
+
                     this.eventPercentajeCalculator()
                     this.largerCapacityCalculator()
-                    this.function()
+                    this.past()
                })
      },
      methods:{
@@ -74,10 +76,10 @@ createApp({
                this.eventWithLargerCapacity = eventsSortedByCapacity.shift()
                return this.eventWithLargerCapacity
           },
-          function(){
-               let x = [...new Set(this.arrayEvents.map(event => event.category))]
+          past(){
+               let x = [...new Set(this.arrayPastEvents.map(event => event.category))]
                console.log(x);
-               let y = this.arrayEvents.map( evento => {
+               let y = this.arrayPastEvents.map( evento => {
                     return {
                          name: evento.name,
                          category: evento.category,
@@ -88,12 +90,18 @@ createApp({
                console.log(y);
                let result = x.map( category => y.filter(objeto => objeto.category == category))
                console.log(result);
-               for(array of result){
-                    let z = array.reduce((acc, valorActual) => acc += valorActual.revenue, 0)
-                    let w = array.reduce((acc, valorActual) => acc += valorActual.percentAssistEstimate / array.length, 0)
-                    console.log(z);
-                    console.log(w);
 
+               for(array of result){
+                    console.log(array);
+                    let aux = array.reduce( (acc, objetoActual) => { 
+                              console.log(objetoActual.revenue);
+                              acc.revenue = objetoActual.revenue
+                              console.log(acc);
+
+                    }, {})
+                    console.log(aux);
+                    // let z = array.reduce((acc, valorActual) => acc += valorActual.revenue, 0)
+                    // let w = array.reduce((acc, valorActual) => acc += valorActual.percentAssistEstimate / array.length, 0)
                }
 
                
