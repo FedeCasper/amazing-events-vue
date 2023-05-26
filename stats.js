@@ -77,10 +77,26 @@ createApp({
           function(){
                let x = [...new Set(this.arrayEvents.map(event => event.category))]
                console.log(x);
-               let y = x.map(category => this.arrayEvents.filter(event => event.category == category))
+               let y = this.arrayEvents.map( evento => {
+                    return {
+                         name: evento.name,
+                         category: evento.category,
+                         revenue: evento.assistance ? evento.assistance * evento.price : evento.capacity * evento.price,
+                         percentAssistEstimate: evento.assistance ? (evento.assistance * 100) / evento.capacity : (evento.estimate * 100) / evento.capacity
+                    }
+               })
                console.log(y);
-               // let z = y.map(array => array.reduce((acc, actual) => acc += actual.capacity * actual.price)  )
-               // console.log(z);
+               let result = x.map( category => y.filter(objeto => objeto.category == category))
+               console.log(result);
+               for(array of result){
+                    let z = array.reduce((acc, valorActual) => acc += valorActual.revenue, 0)
+                    let w = array.reduce((acc, valorActual) => acc += valorActual.percentAssistEstimate / array.length, 0)
+                    console.log(z);
+                    console.log(w);
+
+               }
+
+               
           }
      },
      computed:{

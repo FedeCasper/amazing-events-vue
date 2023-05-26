@@ -20,7 +20,7 @@
 
           <header class="d-flex flex-column align-items-center w-100 text-light">
                <img class="m-3" id="headerLogo" src="./assets/Logo-Amazing-Events.png" alt="">
-               <h1 class="p-1">"Welcome to the amazing world of your nearest events"</h1>
+               <h1 class="p-1 text-center">"Welcome to the amazing world of your nearest events"</h1>
           </header>
      
      <!-- NAVBAR section -->
@@ -63,13 +63,9 @@
                                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                                    </ul>
                               </li>
-                              <li class="nav-item">
-                                   <a class="nav-link disabled">Disabled</a>
-                              </li>
                          </ul>
                          <form class="d-flex" role="search">
                               <input id="inputText" class="form-control me-2 " type="text" placeholder="Type the event's name" aria-label="Search" v-model="inputTextValue">
-                              <button id="botonBuscar" class="btn btn-search" type="button" v-on:click="filterByInputText">Search</button>
                          </form>
                     </div>
                </div>
@@ -89,8 +85,8 @@
                <my-component></my-component>
 
      <!-- CHECKBOX section -->
-               <div id="contenedorCheckboxs" class="d-flex justify-content-around p-3 rounded-top">
-                    <label v-for="category of categoryArrayNoRepeat" class="me-2 text-white">
+               <div id="contenedorCheckboxs" class="d-flex justify-content-around p-3 rounded-top flex-wrap">
+                    <label v-for="category of categoryArrayNoRepeat" class="me-2 text-white checkbox">
                          <input class="me-3" type="checkbox" name="" id="" v-model="selectedCategories" :value="category" @change="filterByCheckbox">{{category}}
                     </label>
                </div>
