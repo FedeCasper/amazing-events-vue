@@ -95,8 +95,12 @@
                               <th>Revenues</th>
                               <th>Percentage of assistance</th>
                          </tr>
-                         <tbody id="pastEventsTbody">
-          
+                         <tbody>
+                              <tr v-for="event of pastSecondThirdTableValues">
+                                   <td>{{event.category}}</td>
+                                   <td>{{event.revenue}}</td>
+                                   <td>{{event.percentage}}</td>
+                              </tr>
                          </tbody>
                     </table>
           
@@ -107,8 +111,12 @@
                               <th>Revenues (Estimated)</th>
                               <th>Percentage of assistance (Estimated)</th>
                          </tr>
-                         <tbody id="upcommingEventsTbody">
-          
+                         <tbody>
+                              <tr v-for="event of upcomingSecondThirdTableValues">
+                                   <td>{{event.category}}</td>
+                                   <td>{{event.revenue}}</td>
+                                   <td>{{event.percentage}}</td>
+                              </tr>
                          </tbody>
                     </table>
                </main>

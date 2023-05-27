@@ -1,31 +1,3 @@
-
-//           let arrayUpcommingEventValues =  [...new Set((arrayEvents.filter( element => (new Date(element.date) > currentDate))).map( element => element.category))]
-//           console.log("UPCOMING VALUES", arrayUpcommingEventValues);
-
-//           let arrayPastEventsValues = [...new Set((arrayEvents.filter( element => (new Date(element.date) < currentDate))).map( element => element.category))]
-//           console.log("PAST VALUES",arrayPastEventsValues);
-
-//           let varFiltredAssistanceSort = filterAssistanceSort(arrayEvents)
-//           // console.log(varFiltredAssistanceSort);
-
-//           let varFilterPercentageAssistance = filterPercentageAssistance(varFiltredAssistanceSort)
-//           // console.log(varFilterPercentageAssistance);
-
-//           let varEventsWithCapacitySorted = filterCapacitySort(arrayEvents)
-//           // console.log(varEventsWithCapacitySorted);
-          
-//           let arraysByPastCategories = filterCreateArrayRevenues (arrayPastEventsValues, arrayPastEvents)
-//           // console.log("ARRAY PAST CATEGORIES REVENUES", arraysByPastCategories);
-
-//           let arraysByUpcomingCategories = filterCreateArrayRevenues (arrayUpcommingEventValues, arrayUpcommingEvents)
-//           // console.log("ARRAY UPCOMING CATEGORIES REVENUES", arraysByUpcomingCategories);
-
-//           printTable1(varFilterPercentageAssistance, varEventsWithCapacitySorted)
-//           printTable2and3(arraysByPastCategories, tbodyPastEvent)
-//           printTable2and3(arraysByUpcomingCategories, tbodyUpcomingEvent)
-
-//      })
-
 const {createApp} = Vue
 
 createApp({
@@ -37,7 +9,12 @@ createApp({
                arrayUpcommingEvents: [],
                eventHighestPercent: {},
                eventLowestPercent: {},
-               eventWithLargerCapacity: {}
+               eventWithLargerCapacity: {},
+               categoriesArrayNoRepeat: [],
+               pastObjectArrayWithRevenuePercentage: [],
+               upcomingObjectArrayWithRevenuePercentage: [],
+               pastSecondThirdTableValues: [],
+               upcomingSecondThirdTableValues: [],
           }
      },
      created(){
@@ -53,10 +30,24 @@ createApp({
                     // console.log("PAST EVENTS" , this.arrayPastEvents);
                     this.arrayUpcommingEvents =  this.arrayEvents.filter( element => (new Date(element.date) > this.currentDate))
                     // console.log("UPCOMMING EVENTS" , arrayUpcommingEvents);
-
+                    this.categoriesArrayNoRepeat = [...new Set(this.arrayPastEvents.map(event => event.category))]
+                    // console.log(this.categoriesArrayNoRepeat);
                     this.eventPercentajeCalculator()
                     this.largerCapacityCalculator()
-                    this.past()
+                    
+                    let pastCategoriesArray = this.createNoRepeatCategoriesArray(this.arrayPastEvents)
+                    console.log(pastCategoriesArray);
+                    let upcomingCategoriesArray = this.createNoRepeatCategoriesArray(this.arrayUpcommingEvents)
+
+                    this.newObjectArrayWithRevenuePercentage = this.objectConvertorToRevenuePercentage(this.arrayPastEvents)
+                    console.log(this.newObjectArrayWithRevenuePercentage);
+                    this.upcomingObjectArrayWithRevenuePercentage = this.objectConvertorToRevenuePercentage(this.arrayUpcommingEvents)
+                    console.log(this.upcomingObjectArrayWithRevenuePercentage);
+                    this.pastSecondThirdTableValues = this.createSecondThirdTableValues(this.newObjectArrayWithRevenuePercentage, pastCategoriesArray)
+                    console.log(this.pastSecondThirdTableValues);
+                    this.upcomingSecondThirdTableValues = this.createSecondThirdTableValues(this.upcomingObjectArrayWithRevenuePercentage, upcomingCategoriesArray)
+                    console.log(this.upcomingSecondThirdTableValues);
+
                })
      },
      methods:{
@@ -71,45 +62,41 @@ createApp({
                this.eventHighestPercent = this.eventPercentageArray.shift();
                this.eventLowestPercent = this.eventPercentageArray.pop();
           },
+
           largerCapacityCalculator(){
                let eventsSortedByCapacity = Array.from(this.arrayEvents).sort((a,b) => b.capacity - a.capacity)
                this.eventWithLargerCapacity = eventsSortedByCapacity.shift()
                return this.eventWithLargerCapacity
           },
-          past(){
-               let x = [...new Set(this.arrayPastEvents.map(event => event.category))]
-               console.log(x);
-               let y = this.arrayPastEvents.map( evento => {
+
+          objectConvertorToRevenuePercentage(array){
+               return array.map( evento => {
                     return {
-                         name: evento.name,
                          category: evento.category,
-                         revenue: evento.assistance ? evento.assistance * evento.price : evento.capacity * evento.price,
-                         percentAssistEstimate: evento.assistance ? (evento.assistance * 100) / evento.capacity : (evento.estimate * 100) / evento.capacity
+                         revenue: evento.assistance ? evento.assistance * evento.price : evento.estimate * evento.price,
+                         percentage: evento.assistance ? (evento.assistance * 100) / evento.capacity : (evento.estimate * 100) / evento.capacity
                     }
                })
-               console.log(y);
-               let result = x.map( category => y.filter(objeto => objeto.category == category))
+          },
+
+          createNoRepeatCategoriesArray(array){
+               return [...new Set(array.map(event => event.category))]
+          },
+
+          createSecondThirdTableValues(array, categoriesArray){
+               let result = categoriesArray.map( category => array.filter( objeto => objeto.category == category ))
                console.log(result);
-
-               for(array of result){
-                    console.log(array);
-                    let x = 0
-                    let y = 0
-                    let aux = array.reduce( (acc, objetoActual) => { 
-
-                              x += objetoActual.revenue;
-                              y += objetoActual.percentAssistEstimate;
-
-
-                    }, {})
-                    console.log( x);
-                    console.log( y);
-                    // console.log(aux);
-                    // let z = array.reduce((acc, valorActual) => acc += valorActual.revenue, 0)
-                    // let w = array.reduce((acc, valorActual) => acc += valorActual.percentAssistEstimate / array.length, 0)
-               }
-
-               
+               return result.map(array => {
+                    let aux1 = 0;
+                    let aux2 = 0;
+                    return array.reduce((acc, valorActual) => { 
+                         return{
+                                   category: valorActual.category,
+                                   revenue: (aux1 += valorActual.revenue).toLocaleString(),
+                                   percentage: (aux2 +=  valorActual.percentage / array.length).toFixed(2)
+                              } 
+                         },0)
+               });
           }
      },
      computed:{
