@@ -93,13 +93,18 @@ createApp({
 
                for(array of result){
                     console.log(array);
+                    let x = 0
+                    let y = 0
                     let aux = array.reduce( (acc, objetoActual) => { 
-                              console.log(objetoActual.revenue);
-                              acc.revenue = objetoActual.revenue
-                              console.log(acc);
+
+                              x += objetoActual.revenue;
+                              y += objetoActual.percentAssistEstimate;
+
 
                     }, {})
-                    console.log(aux);
+                    console.log( x);
+                    console.log( y);
+                    // console.log(aux);
                     // let z = array.reduce((acc, valorActual) => acc += valorActual.revenue, 0)
                     // let w = array.reduce((acc, valorActual) => acc += valorActual.percentAssistEstimate / array.length, 0)
                }
