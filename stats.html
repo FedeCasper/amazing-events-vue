@@ -68,7 +68,7 @@
                     </div>
                </nav>
           
-               <main>
+               <main class="py-5">
 
      <!-- First Table -->
                     <table id="table1" class="table table-secondary table-striped table-hover">
@@ -93,7 +93,7 @@
                          <tr> 
                               <th>Categories</th>
                               <th>Revenues</th>
-                              <th>Percentage of assistance</th>
+                              <th>Assistance</th>
                          </tr>
                          <tbody>
                               <tr v-for="event of pastSecondThirdTableValues">
@@ -104,12 +104,13 @@
                          </tbody>
                     </table>
           
+     <!-- Third Table -->
                     <table id="table3" class="table table-secondary table-striped table-hover">
                          <th class="tableHeaders" colspan="3">Upcomming Event statistics</th>
                          <tr> 
                               <th>Categories</th>
-                              <th>Revenues (Estimated)</th>
-                              <th>Percentage of assistance (Estimated)</th>
+                              <th>Estimate Revenues</th>
+                              <th>Estimate assistance</th>
                          </tr>
                          <tbody>
                               <tr v-for="event of upcomingSecondThirdTableValues">
@@ -119,6 +120,7 @@
                               </tr>
                          </tbody>
                     </table>
+                    
                </main>
      
      
