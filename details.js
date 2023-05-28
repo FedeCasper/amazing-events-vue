@@ -23,7 +23,7 @@ createApp({
                     this.arrayOriginal = data.events
                     console.log(this.arrayOriginal);
                     this.eventoObjeto = this.arrayOriginal.find(element => element._id == this.id);
-                    // console.log(this.eventoObjeto);
+                    console.log(this.eventoObjeto);
 
                     
                     this.generateRandomNumber()

@@ -51,24 +51,24 @@ h1 {
      border-bottom: 2px solid #42D392;
 }
 
-.checkbox{
+/* .checkbox{
      width: 6rem;
-}
+} */
 
 .btn-search{
      color: #26ac70;
      border: 2px solid #26ac70;
 }
 
-.top3{
+/* .top3{
      width: calc(50% - 5px);
      margin-right: 5px;
-}
+} */
 
-.top6{
+/* .top6{
      width: calc(50% - 5px);
      margin-left: 5px;
-}
+} */
 
 #contenedorCards {
      background-color: rgba(165, 165, 165, 0.09);
@@ -76,7 +76,7 @@ h1 {
 
 .card-container{
      transition: all 0.2s ease-in-out;
-     width: 15rem;
+     /* width: 15rem; */
 }
 
 .card-container:hover{
@@ -84,7 +84,6 @@ h1 {
 }
 
 .mainCards{
-     width: 18rem;
      position: relative;
 }
 
