@@ -14,7 +14,7 @@
 
 <body class="d-flex flex-column align-items-center">
 
-     <div id="app" class="w-100 d-flex flex-column align-items-center">
+     <div id="app" class="w-100 d-flex flex-column align-items-center px-1">
 
           <span>{{crossFilter}}</span>
 
@@ -85,7 +85,7 @@
 
      <!-- CHECKBOX section -->
                <div id="contenedorCheckboxs" class="row d-flex justify-content-around p-3 rounded-top flex-wrap">
-                    <label v-for="category of categoryArrayNoRepeat" class="col me-2 text-white checkbox">
+                    <label v-for="category of categoryArrayNoRepeat" class="col-5 text-white checkbox">
                          <input class="me-3" type="checkbox" name="" id="" v-model="selectedCategories"
                               :value="category" @change="filterByCheckbox">{{category}}
                     </label>

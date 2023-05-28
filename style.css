@@ -37,7 +37,6 @@ header {
 }
 
 main {
-     width: 90%;
      min-height: 75vh;
 }
 
@@ -74,17 +73,13 @@ h1 {
      background-color: rgba(165, 165, 165, 0.09);
 }
 
-.card-container{
-     transition: all 0.2s ease-in-out;
-     /* width: 15rem; */
-}
-
 .card-container:hover{
      transform: scale(1.02);
 }
 
 .mainCards{
      position: relative;
+     transition: all 0.2s ease-in-out;
 }
 
 .star{
