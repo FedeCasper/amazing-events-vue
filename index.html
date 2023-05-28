@@ -84,8 +84,8 @@
                </div>
 
      <!-- CHECKBOX section -->
-               <div id="contenedorCheckboxs" class="row d-flex justify-content-around p-3 rounded-top flex-wrap">
-                    <label v-for="category of categoryArrayNoRepeat" class="col-5 text-white checkbox">
+               <div id="contenedorCheckboxs" class="row d-flex justify-content-around p-3 rounded-top">
+                    <label v-for="category of categoryArrayNoRepeat" class="col-5 col-sm-4 col-xl text-white checkbox">
                          <input class="me-3" type="checkbox" name="" id="" v-model="selectedCategories"
                               :value="category" @change="filterByCheckbox">{{category}}
                     </label>
@@ -98,7 +98,7 @@
      <!-- CARDS CONTAINER section -->
                <div id="contenedorCards" class="row w-100 py-4 rounded-bottom m-0">
 
-                    <div v-cloak v-if="printableArray.length != 0" v-for="event of printableArray" class="col-6 card shadow card-container p-0 mainCards ">
+                    <div v-cloak v-if="printableArray.length != 0" v-for="event of printableArray" class="col-6 col-md-4 col-lg-3 col-xl-2 card shadow card-container p-0 mainCards ">
                          <button type="button" class="star" title="Add as favourite"></button>
                          <img :src="event.image" class="card-img-top image-card" :alt="event.name" :title="event.name">
                          <div class="card-body d-flex flex-column justify-content-between flex-wrap normal-card">
