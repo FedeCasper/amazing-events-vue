@@ -17,13 +17,14 @@
      <div id="app" class="w-100 d-flex flex-column align-items-center px-1">
 
           <span>{{crossFilter}}</span>
-
+          
+     <!-- Header section -->
           <header class="d-flex flex-column align-items-center w-100 text-light">
                <img class="m-3" id="headerLogo" src="./assets/Logo-Amazing-Events.png" alt="">
                <h1 class="p-1 text-center">"Welcome to the amazing world of your nearest events"</h1>
           </header>
 
-          <!-- NAVBAR section -->
+     <!-- NAVBAR section -->
           <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top w-100 shadow">
                <div class="container-fluid">
                     <img id="navLogo" src="./assets/logo.png" alt="">
@@ -74,6 +75,7 @@
 
           <main>
 
+     <!-- Most Popular section -->
                <div class="row p-3 rounded-top">
                     <div class="col-4 list-group top3">
                          <button class="btn btn-info" disabled="disabled">a</button>
@@ -98,6 +100,7 @@
      <!-- CARDS CONTAINER section -->
                <div id="contenedorCards" class="row w-100 py-4 rounded-bottom m-0">
 
+          <!-- Card -->
                     <div v-cloak v-if="printableArray.length != 0" v-for="event of printableArray" class="col-6 col-md-4 col-lg-3 col-xl-2 card shadow card-container p-0 mainCards ">
                          <button type="button" class="star" title="Add as favourite"></button>
                          <img :src="event.image" class="card-img-top image-card" :alt="event.name" :title="event.name">
@@ -118,13 +121,13 @@
                               </div>
                          </div>
                     </div>
-
-                    <!-- <div v-else class="d-flex flex-column align-items-center p-5 text-light gap-5">
+          <!-- Optional Card -->
+                    <div v-else class="d-flex flex-column align-items-center p-5 text-light gap-5">
                          <h3 v-cloak>{{notFoundObject.message1}}<span v-cloak
                                    class="accent">{{notFoundObject.search}}</span></h3>
                          <img v-cloak class="w-25" :src="notFoundObject.image" alt="Not found image">
                          <h4 v-cloak>{{notFoundObject.message2}}</h4>
-                    </div> -->
+                    </div>
 
                </div>
           </main>
