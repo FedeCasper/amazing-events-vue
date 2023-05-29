@@ -11,7 +11,9 @@ const app = createApp({
                checkboxFiltredArray: [],
                printableArray: [],
                inputTextValue: "",
-               inputTextFilteredArray: []
+               inputTextFilteredArray: [],
+               notFoundObject: {},
+               todayDate: ""
           }
      },
 
@@ -26,6 +28,8 @@ const app = createApp({
                // console.log(this.categoryArrayNoRepeat);
                this.printableArray = this.eventsArray
                console.log(this.printableArray);
+               this.todayDate = data.currentDate
+               console.log(this.todayDate);
           })
           .catch(error => console.error(error))
      },

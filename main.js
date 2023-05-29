@@ -11,7 +11,8 @@ const app = createApp({
                printableArray: [],
                inputTextValue: "",
                inputTextFilteredArray: [],
-               notFoundObject: {}
+               notFoundObject: {},
+               todayDate:""
           }
      },
      created() {
@@ -24,7 +25,9 @@ const app = createApp({
                     // console.log(this.categoryArrayNoRepeat);
                     this.printableArray = this.eventsArray
                     console.log(this.printableArray);
-                    this.loader = false;
+                    this.todayDate = data.currentDate
+                    console.log(this.todayDate);
+
                })
                .catch(error => console.error(error))
      },

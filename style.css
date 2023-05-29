@@ -50,24 +50,19 @@ h1 {
      border-bottom: 2px solid #42D392;
 }
 
-/* .checkbox{
-     width: 6rem;
-} */
+.f-bg-green{
+     background-color: #42D392;
+}
+
+.f-bg-blue{
+     background-color: rgba(100,126,254,1);
+}
+
 
 .btn-search{
      color: #26ac70;
      border: 2px solid #26ac70;
 }
-
-/* .top3{
-     width: calc(50% - 5px);
-     margin-right: 5px;
-} */
-
-/* .top6{
-     width: calc(50% - 5px);
-     margin-left: 5px;
-} */
 
 #contenedorCards {
      background-color: rgba(165, 165, 165, 0.09);
