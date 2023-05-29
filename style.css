@@ -51,11 +51,11 @@ h1 {
 }
 
 .f-bg-green{
-     background-color: #42D392;
+     background-color: #42D392 !important;
 }
 
 .f-bg-blue{
-     background-color: rgba(100,126,254,1);
+     background-color: rgba(100,126,254,1) !important;
 }
 
 

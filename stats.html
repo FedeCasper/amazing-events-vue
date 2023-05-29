@@ -68,16 +68,18 @@
                     </div>
                </nav>
           
-               <main class="py-5">
+               <main class="p-3 w-100">
 
      <!-- First Table -->
                     <table id="table1" class="table table-secondary table-striped table-hover">
-                         <th class="tableHeaders" colspan="3">Event statistics</th>
-                         <tr> 
-                              <th>Events with the highest % of assistance</th>
-                              <th>Events with the lowest % of assistance</th>
-                              <th>Event with larger capacity</th>
-                         </tr>
+                         <thead>
+                              <th class="tableHeaders rounded-top-1 text-light" colspan="3">Event statistics</th>
+                              <tr> 
+                                   <th>Events with the highest % of assistance</th>
+                                   <th>Events with the lowest % of assistance</th>
+                                   <th>Event with larger capacity</th>
+                              </tr>
+                         </thead>
                          <tbody id="pastEventsTbody">
                               <tr>
                                    <td>{{eventHighestPercent.name}} ( {{eventHighestPercent.eventAssistancePercentage}}% )</td>
@@ -89,34 +91,38 @@
           
      <!-- Second Table -->
                     <table id="table2" class="table table-secondary table-striped table-hover">
-                         <th class="tableHeaders" colspan="3">Past Event statistics</th>
+                         <thead>
+                              <th class="f-bg-blue text-light rounded-top-1" colspan="3">Past Event statistics</th>
                               <tr> 
                                    <th>Categories</th>
                                    <th>Revenues</th>
                                    <th>Assistance</th>
                               </tr>
+                         </thead>
                          <tbody>
                               <tr v-for="event of pastSecondThirdTableValues">
                                    <td>{{event.category}}</td>
-                                   <td>{{event.revenue}}</td>
-                                   <td>{{event.percentage}}</td>
+                                   <td>$ {{event.revenue}}</td>
+                                   <td>{{event.percentage}} %</td>
                               </tr>
                          </tbody>
                     </table>
           
      <!-- Third Table -->
                     <table id="table3" class="table table-secondary table-striped table-hover">
-                         <th class="tableHeaders" colspan="3">Upcomming Event statistics</th>
-                              <tr> 
-                                   <th>Categories</th>
-                                   <th>Estimate Revenues</th>
-                                   <th>Estimate assistance</th>
+                         <thead>
+                              <th class="f-bg-green col-12 rounded-top-1" colspan="3">Upcomming Event statistics</th>
+                              <tr class="col-12"> 
+                                   <th class="col-4">Categories</th>
+                                   <th class="col-4">Estimate Revenues</th>
+                                   <th class="col-4">Estimate Assistance</th>
                               </tr>
+                         </thead>
                          <tbody>
                               <tr v-for="event of upcomingSecondThirdTableValues">
                                    <td>{{event.category}}</td>
-                                   <td>{{event.revenue}}</td>
-                                   <td>{{event.percentage}}</td>
+                                   <td>$ {{event.revenue}}</td>
+                                   <td>{{event.percentage}} %</td>
                               </tr>
                          </tbody>
                     </table>

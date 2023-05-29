@@ -23,7 +23,7 @@
                <h1 class="p-1 text-center">"Welcome to the amazing world of your nearest events"</h1>
           </header>
 
-          <!-- NAVBAR section -->
+     <!-- NAVBAR section -->
           <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top w-100 shadow">
                <div class="container-fluid">
                     <img id="navLogo" src="./assets/logo.png" alt="">
@@ -72,31 +72,34 @@
                </div>
           </nav>
 
-          <main>
+          <main class="px-3 py-5 w-100">
 
-               <div class="d-flex p-3 rounded-top flex-wrap">
-                    <div class="list-group top3">
-
+     <!-- Most Popular section -->
+               <!-- <div class="row p-3 rounded-top">
+                    <div class="col-4 list-group top3">
+                         <button class="btn btn-info" disabled="disabled">a</button>
                     </div>
-                    <div class="list-group top6">
-
+                    <div class="col-8 list-group top6">
+                         <button class="btn btn-info" disabled="disabled">a</button>
                     </div>
-               </div>
+               </div> -->
 
-               <!-- CHECKBOX section -->
-               <div id="contenedorCheckboxs" class="d-flex justify-content-around p-3 rounded-top flex-wrap">
-                    <label v-for="category of categoryArrayNoRepeat" class="me-2 text-white checkbox">
+     <!-- Checkbox section -->
+               <div id="contenedorCheckboxs" class="row d-flex justify-content-around p-3 rounded-top mx-0">
+                    <label v-for="category of categoryArrayNoRepeat" class="col-5 col-sm-4 col-xl text-white checkbox">
                          <input class="me-3" type="checkbox" name="" id="" v-model="selectedCategories"
                               :value="category" @change="filterByCheckbox">{{category}}
                     </label>
                </div>
 
+     <!-- Number of Event found bar -->
                <div v-if="checkboxFiltredArray.length != 0" class="bg-warning d-flex justify-content-center">
                     {{checkboxFiltredArray.length}} events has been found!</div>
 
-               <!-- CARDS CONTAINER section -->
-               <div id="contenedorCards" class="d-flex flex-wrap justify-content-center py-4 rounded-bottom gap-3">
+     <!-- CARDS CONTAINER section -->
+               <div id="contenedorCards" class="row w-100 py-4 rounded-bottom m-0 justify-content-center">
 
+               <!-- Individual Card -->
                     <div v-cloak v-if="printableArray.length != 0" v-for="event of printableArray" class="col-6 col-md-4 col-lg-3 p-1 shadow f-mainCards">
                          <div class="card p-0 h-100">
                               <button type="button" class="star" title="Add as favourite"></button>
