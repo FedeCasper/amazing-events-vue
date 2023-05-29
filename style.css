@@ -77,7 +77,7 @@ h1 {
      transform: scale(1.02);
 }
 
-.mainCards{
+.f-mainCards{
      position: relative;
      transition: all 0.2s ease-in-out;
 }
