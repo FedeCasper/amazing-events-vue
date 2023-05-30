@@ -12,7 +12,8 @@ const app = createApp({
                inputTextValue: "",
                inputTextFilteredArray: [],
                notFoundObject: {},
-               todayDate:""
+               todayDate:"",
+               favorites: []
           }
      },
      created() {
@@ -42,7 +43,21 @@ const app = createApp({
      },
 
      methods: {
-
+          toogleFav(id){
+               if(this.favorites.find(event => event._id === id)){
+                    console.log("Lo quita");
+                    let aux = this.favorites.filter(event => event._id !== id)
+                    console.log(aux);
+                    console.log(id);
+                    this.favorites = aux
+               }else{
+                    const aux = this.eventsArray.find(event => event._id === id)
+                    console.log(aux);
+                    this.favorites.push(aux)
+                    console.log("Lo agrega");
+                    console.log(this.favorites);
+               }
+          }
      },
 
      computed: {

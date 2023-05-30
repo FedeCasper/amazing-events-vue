@@ -58,6 +58,9 @@ h1 {
      background-color: rgba(100,126,254,1) !important;
 }
 
+.f-bg-dark{
+     background-color: #1A1A1A;
+}
 
 .btn-search{
      color: #26ac70;
@@ -93,6 +96,8 @@ h1 {
 }
 
 .starSelected{
+     height: 32px;
+     width:32px;
      background-image: url(./assets/fill-star.png);
      position: absolute;
      bottom: 20px;
