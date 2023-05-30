@@ -25,7 +25,7 @@
           </header>
 
      <!-- NAVBAR section -->
-          <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top w-100 shadow">
+          <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top w-100 shadow px-2">
                <div class="container-fluid">
                     <img id="navLogo" src="./assets/logo.png" alt="">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -67,6 +67,7 @@
                          </ul>
                          <div class="d-flex" role="search">
                               <input id="inputText" class="form-control me-2 " type="text" placeholder="Type the event's name" aria-label="Search" v-model="inputTextValue">
+                              <!-- Off canvas button -->
                               <button type="button" class="btn btn-primary position-relative btn-sm" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                                         Favorites
                                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -148,24 +149,33 @@
                <div v-if="checkboxFiltredArray.length != 0" class="bg-warning d-flex justify-content-center">
                     {{checkboxFiltredArray.length}} events has been found!</div>
 
-                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button>
-
+     <!-- Off Canvas Section -->
                     <div class="offcanvas offcanvas-end f-bg-dark" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                          <div class="offcanvas-header">
-                              <h5 class="offcanvas-title" id="offcanvasRightLabel">These are your favourites events</h5>
+                              <h5 class="offcanvas-title text-light" id="offcanvasRightLabel">These are your favourites events</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                          </div>
                          <div class="offcanvas-body d-flex flex-column gap-3">
                               <div v-for="event of favorites" class="card w-100">
                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                        <a href="#" class="btn btn-primary">Button</a>
+                                        <h5 class="card-title category">{{event.name}}</h5>
+                                        <h6 class="card-text">{{event.category}}</h6>
+                                        <p class="card-text mb-2 fst-italic small">{{event.description}}</p>
+                                        <h6 class="card-text date"><img class="h-75 me-2" src="./assets/date.png" alt="...">{{event.date}}</h6>
+                                        <div class="d-flex gap-2">
+                                             <a href="#" class="btn btn-primary btn-sm text-light">Details</a>
+                                             <a href="#" class="btn btn-primary btn-sm text-light">Buy tickets</a>
+                                             <a href="#" class="btn btn-primary btn-sm" @click="toogleFav(event._id)">Remove</a>
+                                        </div>
                                    </div>
                               </div>
                          </div>
+                         <div class="w-100 p-2">
+                              <a href="#" class="btn btn-primary btn-sm w-100 p-3" @click="favorites = []">Remove all favorites 🗑</a>
+                         </div>
                     </div>
 
+                    
                <!-- Cards Container section -->
                <div id="contenedorCards" class="row w-100 py-4 rounded-bottom m-0 justify-content-center">
 
@@ -184,8 +194,7 @@
                                         <p class="card-text fw-bold m-0">{{event.place}}</p>
                                         <p class="card-text fw-bold m-0"><span class="fw-normal">U$D
                                                   {{event.price}}.00</span></p>
-                                        <h6 class="card-text date mt-2"><img class="h-75 me-2" src="./assets/date.png"
-                                                  alt="...">{{event.date}}</h6>
+                                        <h6 class="card-text date mt-2"><img class="h-75 me-2" src="./assets/date.png" alt="...">{{event.date}}</h6>
                                    </div>
                                    <div class="d-flex mt-3">
                                         <a id="btn-goSomewhere" :href=`./details.html?id=${event._id}`
