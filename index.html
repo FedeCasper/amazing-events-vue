@@ -150,7 +150,7 @@
                     {{checkboxFiltredArray.length}} events has been found!</div>
 
      <!-- Off Canvas Section -->
-                    <div class="offcanvas offcanvas-end f-bg-dark" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas offcanvas-end f-bg-dark" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" data-bs-theme="dark">
                          <div class="offcanvas-header">
                               <h5 class="offcanvas-title text-light" id="offcanvasRightLabel">These are your favourites events</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -158,10 +158,10 @@
                          <div class="offcanvas-body d-flex flex-column gap-3">
                               <div v-for="event of favorites" class="card w-100">
                                    <div class="card-body">
-                                        <h5 class="card-title category">{{event.name}}</h5>
+                                        <h5 class="card-title category border-bottom pb-2">{{event.name}}</h5>
                                         <h6 class="card-text">{{event.category}}</h6>
-                                        <p class="card-text mb-2 fst-italic small">{{event.description}}</p>
-                                        <h6 class="card-text date"><img class="h-75 me-2" src="./assets/date.png" alt="...">{{event.date}}</h6>
+                                        <p class="card-text mb-2 fst-italic small text-light">{{event.description}}</p>
+                                        <h6 class="card-text date mb-3"><img class="h-75 me-2" src="./assets/date2.png" alt="...">{{event.date}}</h6>
                                         <div class="d-flex gap-2">
                                              <a href="#" class="btn btn-primary btn-sm text-light">Details</a>
                                              <a href="#" class="btn btn-primary btn-sm text-light">Buy tickets</a>
