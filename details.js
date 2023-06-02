@@ -28,6 +28,8 @@ createApp({
 
                     this.generateRandomNumber()
                     this.createRelatedArray()
+
+                    this.favorites = this.getFavorites() ?? []
                })
 
      },
@@ -40,6 +42,9 @@ createApp({
                this.relatedArray = (this.arrayOriginal.filter( element => element.category == this.eventoObjeto.category && element._id != this.eventoObjeto._id )).splice(0,5)
                this.noRepeatArray = categories.map(category => this.arrayOriginal.find( objeto => objeto.category == category)).filter(event => event._id != this.id ).splice(0,5)
                this.relatedArray.length == 0 ? this.relatedArray = this.noRepeatArray : ""
+          },
+          getFavorites(){
+               return JSON.parse(localStorage.getItem('favorites'))
           },
           toogleFav(id){
                if(this.favorites.find(event => event._id === id)){

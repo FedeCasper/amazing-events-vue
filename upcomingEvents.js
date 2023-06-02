@@ -12,7 +12,8 @@ const app = createApp({
                inputTextValue: "",
                inputTextFilteredArray: [],
                notFoundObject: {},
-               todayDate: ""
+               todayDate: "",
+               favorites: []
           }
      },
 
@@ -29,6 +30,7 @@ const app = createApp({
                console.log(this.printableArray);
                this.todayDate = data.currentDate
                console.log(this.todayDate);
+               this.favorites = this.getFavorites() ?? []
           })
           .catch(error => console.error(error))
      },
@@ -43,7 +45,27 @@ const app = createApp({
      },
 
      methods:{
-
+          getFavorites(){
+               return JSON.parse(localStorage.getItem('favorites'))
+          },
+          toogleFav(id){
+               if(this.favorites.find(event => event._id === id)){
+                    console.log("Lo quita");
+                    let aux = this.favorites.filter(event => event._id !== id)
+                    console.log(aux);
+                    console.log(id);
+                    this.favorites = aux
+               }else{
+                    const aux = this.eventsArray.find(event => event._id === id)
+                    console.log(aux);
+                    this.favorites.push(aux)
+                    console.log("Lo agrega");
+                    console.log(this.favorites);
+               }
+               let plainText = JSON.stringify(this.favorites)
+               console.log(plainText);
+               localStorage.setItem('favorites', plainText)
+          }
      },
 
      computed:{

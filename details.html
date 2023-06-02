@@ -99,7 +99,7 @@
                                         <p class="card-text" v-else>Estimate {{eventoObjeto.estimate}}</p>
                                         <div class="d-flex gap-3 mb-2">
                                              <button type="button" class="btn btn-outline-danger btn-sm">Buy Tickets</button>
-                                             <i :class="favorites.length != 0 ? 'bi bi-heart-fill text-danger' : 'bi bi-heart text-danger'" @click="toogleFav(eventoObjeto._id)" :title="favorites.length != 0 ? 'Remove favorite' : 'Add favorite' "></i>
+                                             <i :class="favorites.some(element => element._id == eventoObjeto._id) ? 'bi bi-heart-fill text-danger' : 'bi bi-heart text-danger'" @click="toogleFav(eventoObjeto._id)" :title="favorites.length != 0 ? 'Remove favorite' : 'Add favorite' "></i>
                                         </div>
                                         <p class="card-text"><small class="text-body-secondary">Last updated
                                                   {{randomNumber}} mins ago</small></p>

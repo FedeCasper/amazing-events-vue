@@ -29,6 +29,8 @@ const app = createApp({
                     this.todayDate = data.currentDate
                     console.log(this.todayDate);
 
+                    this.favorites = this.getFavorites() ?? []
+
                })
                .catch(error => console.error(error))
      },
@@ -43,6 +45,9 @@ const app = createApp({
      },
 
      methods: {
+          getFavorites(){
+               return JSON.parse(localStorage.getItem('favorites'))
+          },
           toogleFav(id){
                if(this.favorites.find(event => event._id === id)){
                     console.log("Lo quita");
@@ -57,6 +62,9 @@ const app = createApp({
                     console.log("Lo agrega");
                     console.log(this.favorites);
                }
+               let plainText = JSON.stringify(this.favorites)
+               console.log(plainText);
+               localStorage.setItem('favorites', plainText)
           }
      },
 
