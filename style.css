@@ -145,6 +145,10 @@ h1 {
      color: #26ac70;
 }
 
+.bi{
+     cursor: pointer;
+}
+
 .normal-card{
      background: rgb(222, 222, 222);
      background: linear-gradient(320deg, rgba(65,184,131,1) 0%, rgba(65, 184, 131, 0.179) 13%, rgba(73, 73, 73, 0.091) 100%);
