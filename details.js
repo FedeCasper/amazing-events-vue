@@ -8,7 +8,8 @@ createApp({
                id: "",
                relatedArray: [],
                randomNumber: 0,
-               noRepeatArray: []
+               noRepeatArray: [],
+               favorites: []
           }
      },
      created() {
@@ -25,7 +26,6 @@ createApp({
                     this.eventoObjeto = this.arrayOriginal.find(element => element._id == this.id);
                     console.log(this.eventoObjeto);
 
-                    
                     this.generateRandomNumber()
                     this.createRelatedArray()
                })
@@ -40,6 +40,21 @@ createApp({
                this.relatedArray = (this.arrayOriginal.filter( element => element.category == this.eventoObjeto.category && element._id != this.eventoObjeto._id )).splice(0,5)
                this.noRepeatArray = categories.map(category => this.arrayOriginal.find( objeto => objeto.category == category)).filter(event => event._id != this.id ).splice(0,5)
                this.relatedArray.length == 0 ? this.relatedArray = this.noRepeatArray : ""
+          },
+          toogleFav(id){
+               if(this.favorites.find(event => event._id === id)){
+                    console.log("Lo quita");
+                    let aux = this.favorites.filter(event => event._id !== id)
+                    console.log(aux);
+                    console.log(id);
+                    this.favorites = aux
+               }else{
+                    const aux = this.arrayOriginal.find(event => event._id === id)
+                    console.log(aux);
+                    this.favorites.push(aux)
+                    console.log("Lo agrega");
+                    console.log(this.favorites);
+               }
           }
      },
      computed: {

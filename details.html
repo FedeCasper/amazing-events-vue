@@ -61,9 +61,17 @@
                                    </ul>
                               </li> -->
                          </ul>
-                         <form class="d-flex" role="search">
-                              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                         </form>
+                         <div class="d-flex" role="search">
+                              <input id="inputText" class="form-control me-2 " type="text" placeholder="Type the event's name" aria-label="Search" v-model="inputTextValue">
+                              <!-- Off canvas button -->
+                              <button type="button" class="btn btn-primary position-relative btn-sm" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                        Favorites
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        {{favorites.length}}
+                                        <span class="visually-hidden">Unread messages</span>
+                                   </span>
+                              </button>
+                         </div>
                     </div>
                </div>
           </nav>
@@ -74,8 +82,7 @@
                     <div class="card mb-3" style="max-width: 940px;">
                          <div class="row g-0">
                               <div class="col-md-4">
-                                   <img id="detailCardImage" :src="eventoObjeto.image" class="rounded-start"
-                                        :alt="eventoObjeto.name" :title="eventoObjeto.name">
+                                   <img id="detailCardImage" :src="eventoObjeto.image" class="rounded-start" :alt="eventoObjeto.name" :title="eventoObjeto.name">
                               </div>
                               <div class="col-md-8">
                                    <div class="card-body normal-card">
@@ -91,7 +98,7 @@
                                         <p class="card-text" v-else>Estimate {{eventoObjeto.estimate}}</p>
                                         <div class="d-flex gap-3 mb-2">
                                              <button type="button" class="btn btn-outline-danger btn-sm">Buy Tickets</button>
-                                             <button type="button" class="btn btn-outline-success btn-sm">Add to favourite</button>
+                                             <button type="button" class="btn btn-outline-success btn-sm" @click="toogleFav(eventoObjeto._id)">{{favorites.length != 0 ? "Remove favorite" : "Add favorite"}}</button>
                                         </div>
                                         <p class="card-text"><small class="text-body-secondary">Last updated
                                                   {{randomNumber}} mins ago</small></p>
@@ -100,6 +107,33 @@
                          </div>
                     </div>
                </div>
+
+     <!-- Off Canvas Section -->
+               <div class="offcanvas offcanvas-end f-bg-dark" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" data-bs-theme="dark">
+                    <div class="offcanvas-header">
+                         <h5 class="offcanvas-title text-light" id="offcanvasRightLabel">These are your favourites events</h5>
+                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body d-flex flex-column gap-3">
+                         <div v-for="event of favorites" class="card w-100">
+                              <div class="card-body">
+                                   <h5 class="card-title category border-bottom pb-2">{{event.name}}</h5>
+                                   <h6 class="card-text">{{event.category}}</h6>
+                                   <p class="card-text mb-2 fst-italic small text-light">{{event.description}}</p>
+                                   <h6 class="card-text date mb-3"><img class="h-75 me-2" src="./assets/date2.png" alt="...">{{event.date}}</h6>
+                                   <div class="d-flex gap-2">
+                                        <a href="#" class="btn btn-primary btn-sm text-light">Details</a>
+                                        <a href="#" class="btn btn-primary btn-sm text-light">Buy tickets</a>
+                                        <a href="#" class="btn btn-primary btn-sm" @click="toogleFav(event._id)">Remove</a>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+                    <div class="w-100 p-2">
+                         <a href="#" class="btn btn-primary btn-sm w-100 p-3" @click="favorites = []">Remove all favorites 🗑</a>
+                    </div>
+               </div>
+
 
                <div class="d-flex flex-column align-items-center w-100 mt-5 py-3 related border-top">
                     <h2 class="text-center mb-3">Related Events</h2>

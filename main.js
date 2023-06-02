@@ -29,13 +29,6 @@ const app = createApp({
                     this.todayDate = data.currentDate
                     console.log(this.todayDate);
 
-                    let element = [1,2]
-
-                    for(let props of element){
-                         console.log(`${props}`);
-                    }
-
-
                })
                .catch(error => console.error(error))
      },
