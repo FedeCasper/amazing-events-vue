@@ -172,12 +172,11 @@
                          </div>
                     </div>
                     <div class="w-100 p-2">
-                         <a href="#" class="btn btn-primary btn-sm w-100 p-3" @click="favorites = []">Remove all favorites 🗑</a>
+                         <a href="#" class="btn btn-primary btn-sm w-100 p-3" @click="clearFavorites">Remove all favorites 🗑</a>
                     </div>
                </div>
 
-               <button type="button" class="btn btn-primary" id="liveToastBtn" @:click="initilizeToast">Show live toast</button>
-
+     <!-- Toast Section -->   
                     <div class="toast-container position-fixed bottom-0 end-0 p-3">
                          <div ref="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                               <div class="toast-header">
@@ -191,9 +190,6 @@
                               </div>
                          </div>
                     </div>
-
-
-
 
                <!-- Cards Container section -->
                <div id="contenedorCards" class="row w-100 py-4 rounded-bottom m-0 justify-content-center">

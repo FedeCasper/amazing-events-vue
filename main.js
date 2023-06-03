@@ -27,12 +27,10 @@ const app = createApp({
                     this.categoryArrayNoRepeat = [...new Set(this.eventsArray.map(elemento => elemento.category))]
                     // console.log(this.categoryArrayNoRepeat);
                     this.printableArray = this.eventsArray
-                    console.log(this.printableArray);
+                    // console.log(this.printableArray);
                     this.todayDate = data.currentDate
-                    console.log(this.todayDate);
-
+                    // console.log(this.todayDate);
                     this.favorites = this.getFavorites() ?? [];
-
                })
                .catch(error => console.error(error))
      },
@@ -50,6 +48,11 @@ const app = createApp({
           getFavorites(){
                return JSON.parse(localStorage.getItem('favorites'))
           },
+          clearFavorites(){
+               localStorage.clear('favorites')
+               this.favorites = []
+               console.log(this.favorites);
+          },
           toogleFav(id){
                this.objectSelected = this.eventsArray.find(event => event._id === id)
                if(this.favorites.find(event => event._id === id)){
@@ -66,7 +69,6 @@ const app = createApp({
                     this.initilizeToast()
                }
                let plainText = JSON.stringify(this.favorites)
-               console.log(plainText);
                localStorage.setItem('favorites', plainText)
           },
           initilizeToast(){

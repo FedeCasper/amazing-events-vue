@@ -48,6 +48,11 @@ const app = createApp({
           getFavorites(){
                return JSON.parse(localStorage.getItem('favorites'))
           },
+          clearFavorites(){
+               localStorage.clear('favorites')
+               this.favorites = []
+               console.log(this.favorites);
+          },
           toogleFav(id){
                if(this.favorites.find(event => event._id === id)){
                     console.log("Lo quita");

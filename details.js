@@ -9,7 +9,9 @@ createApp({
                relatedArray: [],
                randomNumber: 0,
                noRepeatArray: [],
-               favorites: []
+               favorites: [],
+               toast: undefined,
+               objectSelected: {}
           }
      },
      created() {
@@ -47,19 +49,30 @@ createApp({
                return JSON.parse(localStorage.getItem('favorites'))
           },
           toogleFav(id){
+               this.objectSelected = this.arrayOriginal.find(event => event._id === id)
+               console.log(this.objectSelected);
+               console.log(this.favorites);
                if(this.favorites.find(event => event._id === id)){
                     console.log("Lo quita");
                     let aux = this.favorites.filter(event => event._id !== id)
-                    console.log(aux);
-                    console.log(id);
+                    this.toast = true
                     this.favorites = aux
+                    this.initilizeToast()
                }else{
                     const aux = this.arrayOriginal.find(event => event._id === id)
                     console.log(aux);
                     this.favorites.push(aux)
-                    console.log("Lo agrega");
-                    console.log(this.favorites);
+                    this.toast = false
+                    this.initilizeToast()
                }
+               let plainText = JSON.stringify(this.favorites)
+               console.log(plainText);
+               localStorage.setItem('favorites', plainText)
+          },
+          initilizeToast(){
+               const toastBootstrap = bootstrap.Toast.getOrCreateInstance( this.$refs.liveToast)
+               console.log(toastBootstrap);
+               toastBootstrap.show()
           }
      },
      computed: {
