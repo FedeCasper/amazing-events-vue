@@ -13,7 +13,9 @@ const app = createApp({
                inputTextFilteredArray: [],
                notFoundObject: {},
                todayDate:"",
-               favorites: []
+               favorites: [],
+               toast: undefined,
+               objectSelected: {}
           }
      },
      created() {
@@ -29,7 +31,7 @@ const app = createApp({
                     this.todayDate = data.currentDate
                     console.log(this.todayDate);
 
-                    this.favorites = this.getFavorites() ?? []
+                    this.favorites = this.getFavorites() ?? [];
 
                })
                .catch(error => console.error(error))
@@ -49,22 +51,28 @@ const app = createApp({
                return JSON.parse(localStorage.getItem('favorites'))
           },
           toogleFav(id){
+               this.objectSelected = this.eventsArray.find(event => event._id === id)
                if(this.favorites.find(event => event._id === id)){
                     console.log("Lo quita");
                     let aux = this.favorites.filter(event => event._id !== id)
-                    console.log(aux);
-                    console.log(id);
+                    this.toast = true
                     this.favorites = aux
+                    this.initilizeToast()
                }else{
                     const aux = this.eventsArray.find(event => event._id === id)
                     console.log(aux);
                     this.favorites.push(aux)
-                    console.log("Lo agrega");
-                    console.log(this.favorites);
+                    this.toast = false
+                    this.initilizeToast()
                }
                let plainText = JSON.stringify(this.favorites)
                console.log(plainText);
                localStorage.setItem('favorites', plainText)
+          },
+          initilizeToast(){
+               const toastBootstrap = bootstrap.Toast.getOrCreateInstance( this.$refs.liveToast)
+               console.log(toastBootstrap);
+               toastBootstrap.show()
           }
      },
 
