@@ -139,10 +139,11 @@
                </div> -->
 
      <!-- Checkbox section -->
-               <div id="contenedorCheckboxs" class="row d-flex justify-content-around p-3 rounded-top mx-0">
-                    <label v-for="category of categoryArrayNoRepeat" class="col-5 col-sm-4 col-xl text-white checkbox">
-                         <input class="me-3" type="checkbox" name="" id="" v-model="selectedCategories"
-                              :value="category" @change="filterByCheckbox">{{category}}
+               <div id="contenedorCheckboxs" class="row d-flex justify-content-start p-3 rounded-top mx-0">
+                    <label v-for="category of arrayObjectCategoryClass" class="col-6 col-sm-3 col-xl text-white">
+                         <input class="me-1" type="checkbox" name="" id="" v-model="selectedCategories"
+                              :value="category.name" @change="filterByCheckbox">
+                              <i :class="category.icon" class="px-2 text-light"></i>{{category.name}}
                     </label>
                </div>
 

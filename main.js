@@ -15,7 +15,8 @@ const app = createApp({
                todayDate:"",
                favorites: [],
                toast: undefined,
-               objectSelected: {}
+               objectSelected: {},
+               arrayObjectCategoryClass: []
           }
      },
      created() {
@@ -25,7 +26,20 @@ const app = createApp({
                     this.eventsArray = data.events;
                     console.log(this.eventsArray);
                     this.categoryArrayNoRepeat = [...new Set(this.eventsArray.map(elemento => elemento.category))]
-                    // console.log(this.categoryArrayNoRepeat);
+                    console.log(this.categoryArrayNoRepeat);
+                    this.arrayObjectCategoryClass = this.categoryArrayNoRepeat.map(category => {
+                         return {
+                              name: category,
+                              icon: category == "Food" ? "bi bi-cup-hot" :
+                              category == "Museum" ? "bi bi-bank" :
+                              category == "Concert" ? "bi bi-music-note-beamed" :
+                              category == "Race" ? "bi bi-car-front-fill" :
+                              category == "Books" ? "bi bi-journal-bookmark" :
+                              category == "Cinema" ? "bi bi-film" :
+                              category == "Party" ? "bi bi-balloon" : null
+                         }
+                    })
+                    console.log(this.arrayObjectCategoryClass);
                     this.printableArray = this.eventsArray
                     // console.log(this.printableArray);
                     this.todayDate = data.currentDate
