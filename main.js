@@ -16,7 +16,7 @@ const app = createApp({
                favorites: [],
                toast: undefined,
                objectSelected: {},
-               arrayObjectCategoryClass: []
+               livePerfomingEvents: []
           }
      },
      created() {
@@ -39,6 +39,22 @@ const app = createApp({
                               category == "Party" ? "bi bi-balloon" : null
                          }
                     })
+
+
+                    function creatingLivePerfomingArray (array){
+                         let aux = []
+                         for(let i = 0 ; i < 3 ; i++){
+                              let id = Math.ceil(Math.random()*(array.length))
+                              console.log("id", id);
+                              let randomEvent = array.find(event => event._id == id)
+                              console.log("random event", randomEvent);
+                              aux.push( randomEvent )
+                         }
+                         return aux
+                    }
+                    this.livePerfomingEvents = creatingLivePerfomingArray(this.eventsArray); 
+                    console.log(this.livePerfomingEvents);
+
                     console.log(this.arrayObjectCategoryClass);
                     this.printableArray = this.eventsArray
                     // console.log(this.printableArray);
