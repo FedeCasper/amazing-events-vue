@@ -100,7 +100,7 @@ h1 {
 .star{
      height: 32px;
      width:32px;
-     background-image: url(./assets/star.png);
+     background-image: url(./star.png);
      position: absolute;
      bottom: 20px;
      right: 20px;
@@ -109,13 +109,13 @@ h1 {
 }
 
 .star:hover{
-     background-image: url(./assets/fill-star.png);
+     background-image: url(./fill-star.png);
 }
 
 .starSelected{
      height: 32px;
      width:32px;
-     background-image: url(./assets/fill-star.png);
+     background-image: url(./fill-star.png);
      position: absolute;
      bottom: 20px;
      right: 20px;
