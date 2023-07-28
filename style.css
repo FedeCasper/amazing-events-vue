@@ -71,6 +71,18 @@ h1 {
      border: 2px solid #26ac70;
 }
 
+#carouselExampleCaptions{
+     height: 300px;
+}
+
+.carousel-inner{
+     height: 300px;
+}
+
+.carousel-caption{
+     top: 5% !important;
+}
+
 #contenedorCards {
      background-color: rgba(165, 165, 165, 0.09);
 }

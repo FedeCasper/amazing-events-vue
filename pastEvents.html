@@ -117,7 +117,7 @@
                               <p class="card-text mb-2 fst-italic small text-light">{{event.description}}</p>
                               <h6 class="card-text date mb-3"><img class="h-75 me-2" src="./assets/date2.png" alt="...">{{event.date}}</h6>
                               <div class="d-flex gap-2">
-                                   <a href="#" class="btn btn-primary btn-sm text-light">Details</a>
+                                   <a :href=`./details.html?id=${event._id}` class="btn btn-primary btn-sm text-light">Details</a>
                                    <a href="#" class="btn btn-primary btn-sm text-light">Buy tickets</a>
                                    <a href="#" class="btn btn-primary btn-sm" @click="toogleFav(event._id)">Remove</a>
                               </div>
