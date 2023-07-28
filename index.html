@@ -51,20 +51,6 @@
                               <li class="nav-item">
                                    <a class="nav-link" href="./stats.html">Stats</a>
                               </li>
-                              <!-- <li class="nav-item dropdown">
-                                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Dropdown
-                                   </a>
-                                   <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li>
-                                             <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                   </ul>
-                              </li> -->
                          </ul>
                          <div class="d-flex" role="search">
                               <input id="inputText" class="form-control me-2 " type="text" placeholder="Type the event's name" aria-label="Search" v-model="inputTextValue">
@@ -97,9 +83,9 @@
                          <template v-for="(event,index) of livePerfomingEvents">
                               <div :class="event == livePerfomingEvents[0] ? 'carousel-item active' : 'carousel-item' ">
                                    <img :src="event.image" class="w-100 opacity-25" alt="..." style="height: 300px; object-fit: cover; background-position: center;">
-                                   <div class="carousel-caption d-none d-md-block">
+                                   <div class="carousel-caption">
                                         <h3>{{event.name}}</h3>
-                                        <p class="text-light mb-5">{{event.description}}</p>
+                                        <p class="text-light mb-5 d-none d-md-block">{{event.description}}</p>
                                         <h4 class="text-warning fw-bold mb-4">Happening Now!</h4>
                                         <a href="#" class="btn btn-primary btn-sm text-light mb-1">Watch Live</a>
                                    </div>
@@ -186,29 +172,30 @@
                <div id="contenedorCards" class="row w-100 py-4 rounded-bottom m-0 justify-content-center">
 
                     <!-- Individual Card -->
-                    <div v-cloak v-if="printableArray.length != 0" v-for="event of printableArray"
-                         class="col-6 col-md-4 col-lg-3 p-1 shadow f-mainCards">
-                         <div class="card p-0 h-100">
-                              <button type="button" :class="favorites.some(element => element._id === event._id ) ? 'starSelected' : 'star' " title="Add as favorite" @click="toogleFav(event._id)"></button>
-                              <img :src="event.image" class="card-img-top" :alt="event.name" :title="event.name" style="height: 10rem; object-fit: cover;">
-                              <div :class="new Date(todayDate) > new Date(event.date) ? 'f-bg-green small fst-italic p-1 text-center' : 'f-bg-blue small fst-italic p-1 text-center text-light' ">{{new Date(todayDate) > new Date(event.date) ? "Past Event" : "Upcoming Event" }}</div>
-                              <div class="card-body d-flex flex-column justify-content-between flex-wrap normal-card">
-                                   <div class="d-flex flex-column">
-                                        <h5 class="card-title border-bottom pb-2 fw-bold">{{event.name}}</h5>
-                                        <h6 class="card-title category">{{event.category}}</h6>
-                                        <p class="card-text fst-italic">{{event.description}}</p>
-                                        <p class="card-text fw-bold m-0">{{event.place}}</p>
-                                        <p class="card-text fw-bold m-0"><span class="fw-normal">U$D
-                                                  {{event.price}}.00</span></p>
-                                        <h6 class="card-text date mt-2"><img class="h-75 me-2" src="./assets/date.png" alt="...">{{event.date}}</h6>
-                                   </div>
-                                   <div class="d-flex mt-3">
-                                        <a id="btn-goSomewhere" :href=`./details.html?id=${event._id}`
-                                             class="btn btn-primary">Details</a>
+                    <template v-cloak v-if="printableArray.length != 0" v-for="event of printableArray">
+                         <div class="col-6 col-md-4 col-lg-3 p-1 shadow f-mainCards">
+                              <div class="card p-0 h-100">
+                                   <button type="button" :class="favorites.some(element => element._id === event._id ) ? 'starSelected' : 'star' " title="Add as favorite" @click="toogleFav(event._id)"></button>
+                                   <img :src="event.image" class="card-img-top" :alt="event.name" :title="event.name">
+                                   <div :class="new Date(todayDate) > new Date(event.date) ? 'f-bg-green small fst-italic p-1 text-center' : 'f-bg-blue small fst-italic p-1 text-center text-light' ">{{new Date(todayDate) > new Date(event.date) ? "Past Event" : "Upcoming Event" }}</div>
+                                   <div class="card-body d-flex flex-column justify-content-between flex-wrap normal-card">
+                                        <div class="d-flex flex-column">
+                                             <h5 class="card-title border-bottom pb-2 fw-bold">{{event.name}}</h5>
+                                             <h6 class="card-title category">{{event.category}}</h6>
+                                             <p class="card-text fst-italic">{{event.description}}</p>
+                                             <p class="card-text fw-bold m-0">{{event.place}}</p>
+                                             <p class="card-text fw-bold m-0"><span class="fw-normal">U$D
+                                                       {{event.price}}.00</span></p>
+                                             <h6 class="card-text date mt-2"><img class="h-75 me-2" src="./assets/date.png" alt="...">{{event.date}}</h6>
+                                        </div>
+                                        <div class="d-flex mt-3">
+                                             <a id="btn-goSomewhere" :href=`./details.html?id=${event._id}`
+                                                  class="btn btn-primary">Details</a>
+                                        </div>
                                    </div>
                               </div>
                          </div>
-                    </div>
+                    </template>
 
                     <!-- Optional Card -->
                     <div v-else class="d-flex flex-column align-items-center p-5 text-light gap-5">
