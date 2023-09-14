@@ -82,9 +82,9 @@
                          </thead>
                          <tbody id="pastEventsTbody">
                               <tr>
-                                   <td>{{eventHighestPercent.name}} ( {{eventHighestPercent.eventAssistancePercentage}}% )</td>
-                                   <td>{{eventLowestPercent.name}} ( {{eventLowestPercent.eventAssistancePercentage}}% )</td>
-                                   <td>{{eventWithLargerCapacity.name}} ( {{eventWithLargerCapacity.capacity}} )</td>
+                                   <td class="col-4">{{eventHighestPercent.name}} ( {{eventHighestPercent.eventAssistancePercentage}}% )</td>
+                                   <td class="col-4">{{eventLowestPercent.name}} ( {{eventLowestPercent.eventAssistancePercentage}}% )</td>
+                                   <td class="col-4">{{eventWithLargerCapacity.name}} ( {{eventWithLargerCapacity.capacity.toLocaleString()}} pers. )</td>
                               </tr>
                          </tbody>
                     </table>
@@ -94,16 +94,16 @@
                          <thead>
                               <th class="f-bg-blue text-light rounded-top-1" colspan="3">Past Event statistics</th>
                               <tr> 
-                                   <th>Categories</th>
-                                   <th>Revenues</th>
-                                   <th>Assistance</th>
+                                   <th class="col-4">Categories</th>
+                                   <th class="col-4">Revenues</th>
+                                   <th class="col-4">Assistance</th>
                               </tr>
                          </thead>
                          <tbody>
                               <tr v-for="event of pastSecondThirdTableValues">
-                                   <td>{{event.category}}</td>
-                                   <td>$ {{event.revenue}}</td>
-                                   <td>{{event.percentage}} %</td>
+                                   <td class="col-4">{{event.category}}</td>
+                                   <td class="col-4">$ {{event.revenue}}</td>
+                                   <td class="col-4">{{event.percentage}} %</td>
                               </tr>
                          </tbody>
                     </table>
@@ -120,15 +120,14 @@
                          </thead>
                          <tbody>
                               <tr v-for="event of upcomingSecondThirdTableValues">
-                                   <td>{{event.category}}</td>
-                                   <td>$ {{event.revenue}}</td>
-                                   <td>{{event.percentage}} %</td>
+                                   <td class="col-4">{{event.category}}</td>
+                                   <td class="col-4">$ {{event.revenue}}</td>
+                                   <td class="col-4">{{event.percentage}} %</td>
                               </tr>
                          </tbody>
                     </table>
 
                </main>
-     
      
           <footer class="d-flex justify-content-center align-items-center">
                <p>Desarrollado por Federico Rouyere</p>

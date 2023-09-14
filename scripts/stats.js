@@ -36,17 +36,17 @@ createApp({
                     this.largerCapacityCalculator()
                     
                     let pastCategoriesArray = this.createNoRepeatCategoriesArray(this.arrayPastEvents)
-                    console.log(pastCategoriesArray);
+                    // console.log(pastCategoriesArray);
                     let upcomingCategoriesArray = this.createNoRepeatCategoriesArray(this.arrayUpcommingEvents)
 
                     this.newObjectArrayWithRevenuePercentage = this.objectConvertorToRevenuePercentage(this.arrayPastEvents)
-                    console.log(this.newObjectArrayWithRevenuePercentage);
+                    // console.log(this.newObjectArrayWithRevenuePercentage);
                     this.upcomingObjectArrayWithRevenuePercentage = this.objectConvertorToRevenuePercentage(this.arrayUpcommingEvents)
-                    console.log(this.upcomingObjectArrayWithRevenuePercentage);
+                    // console.log(this.upcomingObjectArrayWithRevenuePercentage);
                     this.pastSecondThirdTableValues = this.createSecondThirdTableValues(this.newObjectArrayWithRevenuePercentage, pastCategoriesArray)
-                    console.log(this.pastSecondThirdTableValues);
+                    // console.log(this.pastSecondThirdTableValues);
                     this.upcomingSecondThirdTableValues = this.createSecondThirdTableValues(this.upcomingObjectArrayWithRevenuePercentage, upcomingCategoriesArray)
-                    console.log(this.upcomingSecondThirdTableValues);
+                    // console.log(this.upcomingSecondThirdTableValues);
 
                })
      },
@@ -59,13 +59,13 @@ createApp({
                     };
                } )
                this.eventPercentageArray.sort((a,b) => b.eventAssistancePercentage - a.eventAssistancePercentage)
-               this.eventHighestPercent = this.eventPercentageArray.shift();
-               this.eventLowestPercent = this.eventPercentageArray.pop();
+               this.eventHighestPercent = this.eventPercentageArray[0];
+               this.eventLowestPercent = this.eventPercentageArray[this.eventPercentageArray.length -1];
           },
 
           largerCapacityCalculator(){
                let eventsSortedByCapacity = Array.from(this.arrayEvents).sort((a,b) => b.capacity - a.capacity)
-               this.eventWithLargerCapacity = eventsSortedByCapacity.shift()
+               this.eventWithLargerCapacity = eventsSortedByCapacity[0]
                return this.eventWithLargerCapacity
           },
 
